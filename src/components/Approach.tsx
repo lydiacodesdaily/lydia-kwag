@@ -5,18 +5,18 @@ import { motion } from "framer-motion";
 const principles = [
   {
     num: "01",
-    title: "Energy-aware systems",
-    body: "Most software assumes constant attention and motivation. I design tools that work with fluctuating energy and focus.",
+    title: "Design for real attention patterns",
+    body: "People often open tools mid-task, low-energy, or between other responsibilities. Good software should support that reality — easy to pick up, pause, and return to without losing the thread.",
   },
   {
     num: "02",
-    title: "Gentle structure",
-    body: "Interfaces should guide behavior without overwhelming the user. Small constraints and subtle cues are more effective than complex feature sets.",
+    title: "Structure over complexity",
+    body: "Thoughtful constraints can be more effective than adding more features. Clear sequencing, quiet defaults, and simple states reduce friction and help people move forward.",
   },
   {
     num: "03",
-    title: "Human-in-the-loop AI",
-    body: "AI should assist thinking, not replace it. I build systems where people stay in control while AI helps generate options and reduce friction.",
+    title: "AI that assists, not replaces",
+    body: "AI works best when it supports thinking rather than replacing it. The goal is momentum — surfacing options, reducing blank-page friction, and getting out of the way once someone has clarity.",
   },
 ];
 
@@ -38,18 +38,23 @@ export default function Approach() {
             How I Build Software
           </h2>
         </motion.div>
-        <motion.p
-          className="mb-14 max-w-2xl text-base leading-relaxed text-stone-500"
+        <motion.div
+          className="mb-14 max-w-2xl space-y-3 text-base leading-relaxed text-stone-500"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          I design software systems around real human behavior rather than
-          idealized workflows. My work focuses on tools that support focus,
-          learning, and decision-making — reducing cognitive load and creating
-          calmer interfaces that help people move forward.
-        </motion.p>
+          <p>
+            People rarely use software in ideal conditions. They&apos;re often
+            mid-task, switching contexts, or returning to something they started
+            earlier.
+          </p>
+          <p>
+            I design systems with those real-world patterns in mind — tools that
+            are easy to start, pause, and continue without friction.
+          </p>
+        </motion.div>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {principles.map((p, i) => (
             <motion.div
@@ -64,9 +69,11 @@ export default function Approach() {
                 ease: [0.25, 0.1, 0.25, 1],
               }}
             >
-              <span className="mb-4 block font-mono text-5xl font-bold leading-none text-white/[0.04] select-none">
-                {p.num}
-              </span>
+              <div className="mb-5 border-t border-violet-500/20 pt-5">
+                <span className="font-mono text-xs text-violet-400/50 select-none">
+                  {p.num}
+                </span>
+              </div>
               <h3 className="mb-3 text-base font-medium text-stone-100">
                 {p.title}
               </h3>
