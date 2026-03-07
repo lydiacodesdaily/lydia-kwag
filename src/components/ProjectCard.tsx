@@ -23,14 +23,14 @@ export default function ProjectCard({
   return (
     <Wrapper
       {...wrapperProps}
-      className="group flex flex-col justify-between rounded-2xl border border-stone-200 bg-white p-7 transition-all duration-200 hover:border-stone-300 hover:shadow-sm"
+      className="group flex flex-col justify-between rounded-2xl border border-white/[0.07] bg-white/[0.02] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/30 hover:bg-white/[0.05] hover:shadow-[0_0_40px_rgba(167,139,250,0.08)]"
     >
       <div>
         <div className="mb-5 flex items-start justify-between gap-4">
-          <h3 className="text-lg font-semibold tracking-tight text-stone-900">
+          <h3 className="text-lg font-semibold tracking-tight text-stone-100">
             {name}
           </h3>
-          <span className="shrink-0 rounded-full border border-stone-200 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-stone-400">
+          <span className="shrink-0 rounded-full border border-violet-500/20 bg-violet-500/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-violet-400">
             {badge}
           </span>
         </div>
@@ -39,14 +39,14 @@ export default function ProjectCard({
         </p>
       </div>
       <div className="space-y-3">
-        <p className="font-mono text-[11px] uppercase tracking-wider text-stone-400">
+        <p className="font-mono text-[11px] uppercase tracking-wider text-stone-600">
           {platform}
         </p>
         <div className="flex flex-wrap gap-1.5">
           {stack.map((tag) => (
             <span
               key={tag}
-              className="rounded-md bg-stone-100 px-2 py-0.5 font-mono text-[11px] text-stone-500"
+              className="rounded-md border border-white/[0.05] bg-white/[0.03] px-2 py-0.5 font-mono text-[11px] text-stone-500"
             >
               {tag}
             </span>

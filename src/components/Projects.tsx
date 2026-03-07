@@ -1,3 +1,6 @@
+"use client";
+
+import { motion, type Variants } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 
 const projects = [
@@ -27,23 +30,46 @@ const projects = [
   },
 ];
 
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 32 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
 export default function Projects() {
   return (
     <section id="projects" className="px-6 py-32">
       <div className="mx-auto max-w-5xl">
-        <div className="mb-12">
-          <p className="mb-2 font-mono text-xs uppercase tracking-widest text-stone-400">
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <p className="mb-2 font-mono text-xs uppercase tracking-widest text-violet-400/70">
             Work
           </p>
-          <h2 className="text-3xl font-semibold tracking-tight text-stone-900">
+          <h2 className="text-3xl font-semibold tracking-tight text-stone-100">
             Selected Projects
           </h2>
-        </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        </motion.div>
+        <motion.div
+          className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ staggerChildren: 0.12 }}
+        >
           {projects.map((project) => (
-            <ProjectCard key={project.name} {...project} />
+            <motion.div key={project.name} variants={cardVariants}>
+              <ProjectCard {...project} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
