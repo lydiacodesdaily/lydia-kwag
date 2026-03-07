@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { motion, type Variants } from "framer-motion";
+import {
+  motion,
+  type Variants,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 
 const stack = [
   "React",
@@ -27,8 +33,36 @@ const item: Variants = {
 };
 
 export default function Hero() {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const smoothX = useSpring(mouseX, { stiffness: 80, damping: 20 });
+  const smoothY = useSpring(mouseY, { stiffness: 80, damping: 20 });
+
+  // Glow layers counter-move to appear to travel less than the portrait
+  const outerCounterX = useTransform(smoothX, (v) => -v * 0.6);
+  const outerCounterY = useTransform(smoothY, (v) => -v * 0.6);
+  const innerCounterX = useTransform(smoothX, (v) => -v * 0.35);
+  const innerCounterY = useTransform(smoothY, (v) => -v * 0.35);
+
+  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const nx = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+    const ny = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+    mouseX.set(nx * 16);
+    mouseY.set(ny * 16);
+  }
+
+  function handleMouseLeave() {
+    mouseX.set(0);
+    mouseY.set(0);
+  }
+
   return (
-    <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 pt-20">
+    <section
+      className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 pt-20"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="relative mx-auto w-full max-w-5xl">
         <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
           <motion.div variants={container} initial="hidden" animate="show">
@@ -85,11 +119,18 @@ export default function Hero() {
               y: { duration: 6, delay: 1.4, repeat: Infinity, ease: "easeInOut" },
             }}
           >
-            <div className="relative">
-              {/* Outer ambient glow */}
-              <div className="absolute inset-0 scale-125 rounded-3xl bg-violet-600/10 blur-[100px]" />
-              {/* Inner halo */}
-              <div className="absolute inset-0 scale-105 rounded-2xl bg-violet-500/20 blur-[50px]" />
+            {/* Parallax wrapper — portrait travels furthest */}
+            <motion.div className="relative" style={{ x: smoothX, y: smoothY }}>
+              {/* Outer ambient glow — travels 40% as far (counter-moves) */}
+              <motion.div
+                className="absolute inset-0 scale-125 rounded-3xl bg-violet-600/10 blur-[100px]"
+                style={{ x: outerCounterX, y: outerCounterY }}
+              />
+              {/* Inner halo — travels 65% as far */}
+              <motion.div
+                className="absolute inset-0 scale-105 rounded-2xl bg-violet-500/20 blur-[50px]"
+                style={{ x: innerCounterX, y: innerCounterY }}
+              />
               <Image
                 src="/profile.png"
                 alt="Lydia Kwag"
@@ -98,7 +139,7 @@ export default function Hero() {
                 className="relative w-full max-w-sm rounded-2xl object-cover ring-1 ring-white/[0.08]"
                 priority
               />
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

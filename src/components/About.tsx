@@ -27,22 +27,19 @@ export default function About() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            <p className="text-base leading-relaxed text-stone-500">
-              I&apos;m a product-focused software engineer working at the
-              intersection of engineering, behavior design, and
-              human-computer interaction.
+            <p className="text-base leading-relaxed text-stone-300">
+              I design software systems around real human behavior — not
+              idealized workflows.
             </p>
             <p className="text-base leading-relaxed text-stone-500">
-              My focus areas: focus tools, productivity systems, and software
-              that respects how humans actually think. I care about the whole
-              product — from architecture to interaction design to the words on
-              the screen.
+              My work focuses on tools for focus, learning, and deeper
+              productivity — software that earns attention rather than demands
+              it.
             </p>
             <p className="text-base leading-relaxed text-stone-500">
-              Currently building{" "}
-              <span className="font-medium text-stone-300">FlowMate</span> and
-              exploring what calm, effective software can look like for people
-              who do deep work.
+              I care about the full product experience: system behavior,
+              interface design, interaction details, and the clarity of
+              language.
             </p>
             <div className="pt-2">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-stone-400">

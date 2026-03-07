@@ -1,4 +1,7 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export type IllustrationKey = "timer" | "extension" | "queue";
 
@@ -200,6 +203,31 @@ function VisualZone({
   );
 }
 
+// ─── Tilt hook ────────────────────────────────────────────────────────────────
+
+function useTilt(maxTilt: number) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const rx = useMotionValue(0);
+  const ry = useMotionValue(0);
+  const rotateX = useSpring(rx, { stiffness: 300, damping: 30 });
+  const rotateY = useSpring(ry, { stiffness: 300, damping: 30 });
+
+  function onMouseMove(e: React.MouseEvent) {
+    const el = containerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    ry.set(((e.clientX - rect.left) / rect.width - 0.5) * 2 * maxTilt);
+    rx.set(-((e.clientY - rect.top) / rect.height - 0.5) * 2 * maxTilt);
+  }
+
+  function onMouseLeave() {
+    rx.set(0);
+    ry.set(0);
+  }
+
+  return { containerRef, rotateX, rotateY, onMouseMove, onMouseLeave };
+}
+
 // ─── Card ─────────────────────────────────────────────────────────────────────
 
 export default function ProjectCard({
@@ -214,17 +242,16 @@ export default function ProjectCard({
   illustrationKey,
   variant = "standard",
 }: ProjectCardProps) {
-  const Wrapper = link ? "a" : "div";
-  const wrapperProps = link
+  const { containerRef, rotateX, rotateY, onMouseMove, onMouseLeave } =
+    useTilt(variant === "featured" ? 6 : 8);
+
+  const linkProps = link
     ? { href: link, target: "_blank", rel: "noopener noreferrer" }
-    : {};
+    : undefined;
 
   if (variant === "featured") {
-    return (
-      <Wrapper
-        {...wrapperProps}
-        className="group flex flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-all duration-500 hover:border-violet-500/25 hover:bg-white/[0.03] hover:shadow-[0_0_80px_rgba(167,139,250,0.07)] lg:flex-row"
-      >
+    const content = (
+      <>
         {/* Content */}
         <div className="flex flex-1 flex-col justify-between p-8 lg:p-10">
           <div>
@@ -266,15 +293,34 @@ export default function ProjectCard({
           illustrationKey={illustrationKey}
           className="min-h-[240px] lg:w-[42%]"
         />
-      </Wrapper>
+      </>
+    );
+
+    const cardClass =
+      "group flex flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-colors duration-500 hover:border-violet-500/25 hover:bg-white/[0.03] hover:shadow-[0_0_80px_rgba(167,139,250,0.07)] lg:flex-row";
+
+    return (
+      <div
+        ref={containerRef}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
+        style={{ perspective: "800px" }}
+      >
+        {link ? (
+          <motion.a {...linkProps} className={cardClass} style={{ rotateX, rotateY }}>
+            {content}
+          </motion.a>
+        ) : (
+          <motion.div className={cardClass} style={{ rotateX, rotateY }}>
+            {content}
+          </motion.div>
+        )}
+      </div>
     );
   }
 
-  return (
-    <Wrapper
-      {...wrapperProps}
-      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-all duration-500 hover:-translate-y-0.5 hover:border-violet-500/25 hover:bg-white/[0.03] hover:shadow-[0_0_40px_rgba(167,139,250,0.08)]"
-    >
+  const content = (
+    <>
       {/* Visual */}
       <VisualZone image={image} illustrationKey={illustrationKey} className="h-48" />
       {/* Content */}
@@ -312,6 +358,29 @@ export default function ProjectCard({
           )}
         </div>
       </div>
-    </Wrapper>
+    </>
+  );
+
+  const cardClass =
+    "group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-colors duration-500 hover:border-violet-500/25 hover:bg-white/[0.03] hover:shadow-[0_0_40px_rgba(167,139,250,0.08)]";
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      style={{ perspective: "800px" }}
+      className="h-full"
+    >
+      {link ? (
+        <motion.a {...linkProps} className={cardClass} style={{ rotateX, rotateY }}>
+          {content}
+        </motion.a>
+      ) : (
+        <motion.div className={cardClass} style={{ rotateX, rotateY }}>
+          {content}
+        </motion.div>
+      )}
+    </div>
   );
 }
