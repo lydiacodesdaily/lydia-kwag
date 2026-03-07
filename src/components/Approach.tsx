@@ -5,18 +5,18 @@ import { motion } from "framer-motion";
 const principles = [
   {
     num: "01",
-    title: "Reduce before you build",
-    body: "Cognitive load is the enemy. The best feature is often the one you remove. I design for the minimum viable mental model, then ship.",
+    title: "Energy-aware systems",
+    body: "Most software assumes constant attention and motivation. I design tools that work with fluctuating energy and focus.",
   },
   {
     num: "02",
-    title: "Behavior-first thinking",
-    body: "Good software understands how people actually work — not how they wish they worked. I study behavior and build constraints that support it.",
+    title: "Gentle structure",
+    body: "Interfaces should guide behavior without overwhelming the user. Small constraints and subtle cues are more effective than complex feature sets.",
   },
   {
     num: "03",
-    title: "Calm systems",
-    body: "Software should not demand attention. I build tools that recede into the background and let the work itself stay in focus.",
+    title: "Human-in-the-loop AI",
+    body: "AI should assist thinking, not replace it. I build systems where people stay in control while AI helps generate options and reduce friction.",
   },
 ];
 
@@ -32,12 +32,24 @@ export default function Approach() {
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <p className="mb-2 font-mono text-xs uppercase tracking-widest text-violet-400/70">
-            Thinking
+            Engineering Approach
           </p>
           <h2 className="text-3xl font-semibold tracking-tight text-stone-100">
-            How I Build
+            How I Build Software
           </h2>
         </motion.div>
+        <motion.p
+          className="mb-14 max-w-2xl text-base leading-relaxed text-stone-500"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          I design software systems around real human behavior rather than
+          idealized workflows. My work focuses on tools that support focus,
+          learning, and decision-making — reducing cognitive load and creating
+          calmer interfaces that help people move forward.
+        </motion.p>
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {principles.map((p, i) => (
             <motion.div

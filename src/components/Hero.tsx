@@ -38,39 +38,37 @@ export default function Hero() {
       <div className="relative mx-auto w-full max-w-5xl">
         <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
           <motion.div variants={container} initial="hidden" animate="show">
-            <motion.p
-              variants={item}
-              className="mb-5 font-mono text-xs uppercase tracking-widest text-violet-400/80"
-            >
-              Product Engineer
-            </motion.p>
+            {/* Headline — dominant focal point */}
             <motion.h1
               variants={item}
-              className="mb-7 text-7xl font-semibold leading-none tracking-tight text-stone-100 md:text-[5.5rem]"
+              className="mb-8 text-4xl font-semibold leading-tight tracking-tight text-stone-100 md:text-5xl lg:text-6xl"
             >
-              Lydia
-              <br />
-              Kwag
+              I build software that works with people.
             </motion.h1>
+
+            {/* Byline — name + title, secondary */}
+            <motion.div variants={item} className="mb-8">
+              <div className="mb-3 h-px w-10 bg-violet-400/30" />
+              <p className="font-mono text-sm text-stone-500">
+                Lydia Kwag&nbsp;&nbsp;·&nbsp;&nbsp;Product Engineer
+              </p>
+            </motion.div>
+
+            {/* Supporting copy */}
             <motion.p
               variants={item}
-              className="mb-6 text-xl leading-relaxed text-stone-400"
+              className="mb-10 text-base leading-relaxed text-stone-400"
             >
-              Builds human-centered productivity tools.
+              AI-assisted tools, browser extensions, and calm software systems
+              designed to reduce cognitive load.
             </motion.p>
-            <motion.p
-              variants={item}
-              className="mb-12 text-base leading-relaxed text-stone-500"
-            >
-              I design and ship software that reduces cognitive load — mobile
-              apps, browser extensions, and web tools that help people work
-              without friction.
-            </motion.p>
+
+            {/* Stack tags */}
             <motion.div variants={item} className="flex flex-wrap gap-2">
               {stack.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 font-mono text-xs text-stone-400 transition-all duration-300 hover:border-violet-500/40 hover:bg-violet-500/5 hover:text-violet-300"
+                  className="rounded-full border border-white/[0.06] bg-white/[0.02] px-3 py-1 font-mono text-xs text-stone-500 transition-all duration-300 hover:border-violet-500/30 hover:bg-violet-500/5 hover:text-violet-400"
                 >
                   {tag}
                 </span>
@@ -78,20 +76,32 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
+          {/* Portrait with layered ambient halo */}
           <motion.div
             className="flex justify-center md:justify-end"
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+              y: [0, -8, 0],
+            }}
+            transition={{
+              opacity: { duration: 0.9, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] },
+              scale: { duration: 0.9, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] },
+              y: { duration: 6, delay: 1.4, repeat: Infinity, ease: "easeInOut" },
+            }}
           >
             <div className="relative">
-              <div className="absolute inset-0 rounded-2xl bg-violet-500/20 blur-3xl scale-90" />
+              {/* Outer ambient glow */}
+              <div className="absolute inset-0 scale-125 rounded-3xl bg-violet-600/10 blur-[100px]" />
+              {/* Inner halo */}
+              <div className="absolute inset-0 scale-105 rounded-2xl bg-violet-500/20 blur-[50px]" />
               <Image
                 src="/profile.png"
                 alt="Lydia Kwag"
                 width={400}
                 height={400}
-                className="relative w-full max-w-sm rounded-2xl object-cover ring-1 ring-white/10"
+                className="relative w-full max-w-sm rounded-2xl object-cover ring-1 ring-white/[0.08]"
                 priority
               />
             </div>
