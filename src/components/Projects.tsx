@@ -1,42 +1,64 @@
 "use client";
 
 import { motion, type Variants } from "framer-motion";
-import ProjectCard from "./ProjectCard";
+import ProjectCard, { type IllustrationKey } from "./ProjectCard";
 
-const projects = [
+type Project = {
+  name: string;
+  platform: string;
+  badge: string;
+  tagline: string;
+  description: string;
+  stack: string[];
+  link?: string;
+  illustrationKey: IllustrationKey;
+  variant: "featured" | "standard";
+};
+
+const projects: Project[] = [
   {
     name: "FlowMate",
     platform: "Web · iOS · Android",
     badge: "App Store",
+    tagline: "AI-enhanced focus timer for people who need more than a Pomodoro",
     description:
-      "AI-enhanced focus timer for people who need more than a Pomodoro. Configurable audio cues, time-awareness features, and intelligent task suggestions powered by OpenAI and Claude. ~1,000 active users.",
+      "Configurable audio cues, time-awareness features, and intelligent task suggestions powered by OpenAI and Claude. ~1,000 active users.",
     stack: ["React Native", "Expo", "OpenAI", "Claude", "React", "Next.js", "TypeScript"],
+    illustrationKey: "timer",
+    variant: "featured",
   },
   {
     name: "Flow Club Companion",
     platform: "Chrome · Firefox",
     badge: "Extension",
+    tagline: "Zero-friction coworking timer",
     description:
-      "Browser extension designed for Flow Club's virtual coworking sessions. A lightweight timer and task manager embedded directly into the coworking workflow — zero friction, stays out of the way.",
+      "Lightweight timer and task manager embedded directly into Flow Club's virtual coworking sessions — stays out of the way.",
     stack: ["Browser Extension", "JavaScript", "WebExtension API"],
+    illustrationKey: "extension",
+    variant: "standard",
   },
   {
     name: "JustToday",
     platform: "Web",
     badge: "Web App",
+    tagline: "Queue-based routine execution, no decision fatigue",
     description:
-      "Minimal routine execution system designed to reduce decision fatigue. Queue-based task flow with real-time editing and behavioral constraints that keep you moving without getting overwhelmed.",
+      "Minimal task flow with real-time editing and behavioral constraints that keep you moving without getting overwhelmed.",
     stack: ["React", "TypeScript", "Next.js"],
+    illustrationKey: "queue",
+    variant: "standard",
   },
 ];
 
-const cardVariants: Variants = {
+const containerVariants: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.15 } },
+};
+
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 32 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
-  },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 export default function Projects() {
@@ -57,18 +79,28 @@ export default function Projects() {
             Selected Projects
           </h2>
         </motion.div>
+
         <motion.div
-          className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+          className="space-y-4"
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ staggerChildren: 0.12 }}
+          variants={containerVariants}
         >
-          {projects.map((project) => (
-            <motion.div key={project.name} variants={cardVariants}>
-              <ProjectCard {...project} />
+          {/* Featured project */}
+          <motion.div variants={itemVariants}>
+            <ProjectCard {...projects[0]} />
+          </motion.div>
+
+          {/* Standard projects — 2-column grid */}
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <motion.div variants={itemVariants}>
+              <ProjectCard {...projects[1]} />
             </motion.div>
-          ))}
+            <motion.div variants={itemVariants}>
+              <ProjectCard {...projects[2]} />
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

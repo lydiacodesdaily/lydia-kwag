@@ -1,56 +1,315 @@
+import React from "react";
+
+export type IllustrationKey = "timer" | "extension" | "queue";
+
+// ─── Illustrations ────────────────────────────────────────────────────────────
+
+function TimerIllustration() {
+  // Circumference of r=64: 2π×64 ≈ 402.1 — dashoffset 100.5 = 75% filled
+  return (
+    <div className="relative flex h-full w-full items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="h-56 w-56 rounded-full bg-violet-500/10 blur-3xl" />
+      </div>
+      <svg
+        aria-hidden="true"
+        className="relative z-10 h-40 w-40"
+        viewBox="0 0 160 160"
+      >
+        <circle
+          cx="80"
+          cy="80"
+          r="64"
+          fill="none"
+          stroke="rgba(139,92,246,0.12)"
+          strokeWidth="2.5"
+        />
+        <circle
+          cx="80"
+          cy="80"
+          r="64"
+          fill="none"
+          stroke="rgba(167,139,250,0.65)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeDasharray="402.1"
+          strokeDashoffset="100.5"
+          transform="rotate(-90 80 80)"
+        />
+        <text
+          x="80"
+          y="76"
+          textAnchor="middle"
+          fill="rgba(245,245,244,0.88)"
+          fontSize="22"
+          fontFamily="ui-monospace, monospace"
+          fontWeight="600"
+          letterSpacing="-0.5"
+        >
+          18:32
+        </text>
+        <text
+          x="80"
+          y="96"
+          textAnchor="middle"
+          fill="rgba(167,139,250,0.55)"
+          fontSize="8"
+          fontFamily="ui-monospace, monospace"
+          letterSpacing="3"
+        >
+          FOCUS
+        </text>
+      </svg>
+    </div>
+  );
+}
+
+function ExtensionIllustration() {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="h-32 w-52 rounded-full bg-violet-500/[0.07] blur-2xl" />
+      </div>
+      <div
+        aria-hidden="true"
+        className="relative z-10 w-56 overflow-hidden rounded-xl border border-white/[0.07] bg-white/[0.02]"
+      >
+        {/* Browser chrome */}
+        <div className="flex items-center gap-1.5 border-b border-white/[0.05] px-3 py-2.5">
+          <div className="h-2 w-2 rounded-full bg-white/[0.08]" />
+          <div className="h-2 w-2 rounded-full bg-white/[0.08]" />
+          <div className="h-2 w-2 rounded-full bg-white/[0.08]" />
+          <div className="ml-2 h-2.5 flex-1 rounded-full bg-white/[0.04]" />
+        </div>
+        {/* Task list */}
+        <div className="space-y-2.5 p-4">
+          <div className="flex items-center gap-2.5">
+            <div className="h-3 w-3 shrink-0 rounded-full border border-violet-400/40 bg-violet-400/[0.15]" />
+            <div className="h-1.5 w-28 rounded-full bg-white/[0.15]" />
+          </div>
+          <div className="flex items-center gap-2.5 opacity-60">
+            <div className="h-3 w-3 shrink-0 rounded-full border border-white/10" />
+            <div className="h-1.5 w-20 rounded-full bg-white/[0.06]" />
+          </div>
+          <div className="flex items-center gap-2.5 opacity-40">
+            <div className="h-3 w-3 shrink-0 rounded-full border border-white/10" />
+            <div className="h-1.5 w-24 rounded-full bg-white/[0.06]" />
+          </div>
+          {/* Timer bar */}
+          <div className="border-t border-white/[0.04] pt-3">
+            <div className="flex h-6 items-center gap-2 rounded-lg border border-violet-500/20 bg-violet-500/[0.08] px-3">
+              <div className="h-1.5 w-1.5 rounded-full bg-violet-400/60" />
+              <span className="font-mono text-[9px] tracking-widest text-violet-400/60">
+                25:00
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function QueueIllustration() {
+  return (
+    <div className="relative flex h-full w-full items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="h-32 w-52 rounded-full bg-violet-500/[0.07] blur-2xl" />
+      </div>
+      <div aria-hidden="true" className="relative z-10 w-56 space-y-2">
+        <div className="rounded-xl border border-violet-500/25 bg-violet-500/[0.07] px-4 py-3">
+          <div className="flex items-center gap-2.5">
+            <div className="h-2 w-2 shrink-0 rounded-full bg-violet-400/70" />
+            <div className="h-1.5 w-28 rounded-full bg-white/20" />
+          </div>
+        </div>
+        <div className="rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-2.5 opacity-50">
+          <div className="flex items-center gap-2.5">
+            <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-white/20" />
+            <div className="h-1.5 w-20 rounded-full bg-white/[0.08]" />
+          </div>
+        </div>
+        <div className="rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-2.5 opacity-30">
+          <div className="flex items-center gap-2.5">
+            <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-white/20" />
+            <div className="h-1.5 w-24 rounded-full bg-white/[0.08]" />
+          </div>
+        </div>
+        <div className="rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-2.5 opacity-[0.15]">
+          <div className="flex items-center gap-2.5">
+            <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-white/20" />
+            <div className="h-1.5 w-16 rounded-full bg-white/[0.08]" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Types ────────────────────────────────────────────────────────────────────
+
 type ProjectCardProps = {
   name: string;
   platform: string;
   badge: string;
+  tagline: string;
   description: string;
   stack: string[];
   link?: string;
+  image?: string;
+  illustrationKey?: IllustrationKey;
+  variant?: "featured" | "standard";
 };
+
+// ─── Visual zone ──────────────────────────────────────────────────────────────
+
+const Illustrations: Record<IllustrationKey, () => React.JSX.Element> = {
+  timer: TimerIllustration,
+  extension: ExtensionIllustration,
+  queue: QueueIllustration,
+};
+
+function VisualZone({
+  image,
+  illustrationKey,
+  className = "",
+}: {
+  image?: string;
+  illustrationKey?: IllustrationKey;
+  className?: string;
+}) {
+  const IllustrationComponent = illustrationKey
+    ? Illustrations[illustrationKey]
+    : null;
+
+  if (image) {
+    return (
+      <div className={`relative overflow-hidden bg-black/20 ${className}`}>
+        <img src={image} alt="" className="h-full w-full object-cover object-top" />
+      </div>
+    );
+  }
+
+  return (
+    <div
+      aria-hidden="true"
+      className={`relative overflow-hidden bg-gradient-to-br from-violet-500/[0.08] via-violet-500/[0.03] to-transparent ${className}`}
+    >
+      {IllustrationComponent && <IllustrationComponent />}
+    </div>
+  );
+}
+
+// ─── Card ─────────────────────────────────────────────────────────────────────
 
 export default function ProjectCard({
   name,
   platform,
   badge,
+  tagline,
   description,
   stack,
   link,
+  image,
+  illustrationKey,
+  variant = "standard",
 }: ProjectCardProps) {
   const Wrapper = link ? "a" : "div";
   const wrapperProps = link
     ? { href: link, target: "_blank", rel: "noopener noreferrer" }
     : {};
 
+  if (variant === "featured") {
+    return (
+      <Wrapper
+        {...wrapperProps}
+        className="group flex flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-all duration-500 hover:border-violet-500/25 hover:bg-white/[0.03] hover:shadow-[0_0_80px_rgba(167,139,250,0.07)] lg:flex-row"
+      >
+        {/* Content */}
+        <div className="flex flex-1 flex-col justify-between p-8 lg:p-10">
+          <div>
+            <div className="mb-5 flex items-center gap-3">
+              <span className="rounded-full border border-violet-500/20 bg-violet-500/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-violet-400">
+                {badge}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-stone-600">
+                {platform}
+              </span>
+            </div>
+            <h3 className="mb-3 text-2xl font-semibold tracking-tight text-stone-100 lg:text-3xl">
+              {name}
+            </h3>
+            <p className="mb-3 text-base text-stone-300">{tagline}</p>
+            <p className="text-sm leading-relaxed text-stone-500">{description}</p>
+          </div>
+          <div className="mt-8 flex items-end justify-between gap-4">
+            <div className="flex flex-wrap gap-1.5">
+              {stack.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-md border border-white/[0.05] bg-white/[0.03] px-2 py-0.5 font-mono text-[11px] text-stone-600"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            {link && (
+              <span className="shrink-0 font-mono text-xs text-violet-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                View →
+              </span>
+            )}
+          </div>
+        </div>
+        {/* Visual */}
+        <VisualZone
+          image={image}
+          illustrationKey={illustrationKey}
+          className="min-h-[240px] lg:w-[42%]"
+        />
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper
       {...wrapperProps}
-      className="group flex flex-col justify-between rounded-2xl border border-white/[0.07] bg-white/[0.02] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/30 hover:bg-white/[0.05] hover:shadow-[0_0_40px_rgba(167,139,250,0.08)]"
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-all duration-500 hover:-translate-y-0.5 hover:border-violet-500/25 hover:bg-white/[0.03] hover:shadow-[0_0_40px_rgba(167,139,250,0.08)]"
     >
-      <div>
-        <div className="mb-5 flex items-start justify-between gap-4">
-          <h3 className="text-lg font-semibold tracking-tight text-stone-100">
+      {/* Visual */}
+      <VisualZone image={image} illustrationKey={illustrationKey} className="h-48" />
+      {/* Content */}
+      <div className="flex flex-1 flex-col justify-between p-6">
+        <div>
+          <div className="mb-3 flex items-start justify-between gap-3">
+            <span className="rounded-full border border-violet-500/20 bg-violet-500/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-violet-400">
+              {badge}
+            </span>
+            <span className="font-mono text-[11px] uppercase tracking-wider text-stone-600">
+              {platform}
+            </span>
+          </div>
+          <h3 className="mb-2 text-lg font-semibold tracking-tight text-stone-100">
             {name}
           </h3>
-          <span className="shrink-0 rounded-full border border-violet-500/20 bg-violet-500/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-violet-400">
-            {badge}
-          </span>
+          <p className="mb-2 text-sm font-medium text-stone-300">{tagline}</p>
+          <p className="text-sm leading-relaxed text-stone-500">{description}</p>
         </div>
-        <p className="mb-6 text-sm leading-relaxed text-stone-500">
-          {description}
-        </p>
-      </div>
-      <div className="space-y-3">
-        <p className="font-mono text-[11px] uppercase tracking-wider text-stone-600">
-          {platform}
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          {stack.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-md border border-white/[0.05] bg-white/[0.03] px-2 py-0.5 font-mono text-[11px] text-stone-500"
-            >
-              {tag}
-            </span>
-          ))}
+        <div className="mt-5 space-y-3">
+          <div className="flex flex-wrap gap-1.5">
+            {stack.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-md border border-white/[0.05] bg-white/[0.03] px-2 py-0.5 font-mono text-[11px] text-stone-600"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          {link && (
+            <p className="font-mono text-xs text-violet-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              View →
+            </p>
+          )}
         </div>
       </div>
     </Wrapper>
