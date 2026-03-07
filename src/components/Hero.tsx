@@ -29,12 +29,6 @@ const item: Variants = {
 export default function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col justify-center overflow-hidden px-6 pt-20">
-      {/* Background orbs */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-40 top-1/4 h-[600px] w-[600px] rounded-full bg-violet-600/10 blur-[130px]" />
-        <div className="absolute -right-40 bottom-1/4 h-[500px] w-[500px] rounded-full bg-indigo-600/8 blur-[110px]" />
-      </div>
-
       <div className="relative mx-auto w-full max-w-5xl">
         <div className="grid grid-cols-1 items-center gap-16 md:grid-cols-2">
           <motion.div variants={container} initial="hidden" animate="show">
