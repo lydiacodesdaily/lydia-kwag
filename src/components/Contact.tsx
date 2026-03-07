@@ -6,7 +6,7 @@ const links = [
   { label: "Email", href: "mailto:lydia.kwag.dev@gmail.com" },
   { label: "LinkedIn", href: "https://linkedin.com/in/lydiakwag" },
   { label: "GitHub", href: "https://github.com/lydiacodesdaily" },
-  { label: "Resume", href: "/resume.pdf" },
+  { label: "Resume", href: "/LydiaKwag_Resume.pdf" },
 ];
 
 export default function Contact() {
