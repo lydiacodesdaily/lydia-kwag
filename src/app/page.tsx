@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
+import Testimonial from "@/components/Testimonial";
 import Approach from "@/components/Approach";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
@@ -20,6 +21,7 @@ export default function Home() {
       <main id="main-content">
         <Hero />
         <Projects />
+        <Testimonial />
         <Approach />
         <About />
         <Contact />
