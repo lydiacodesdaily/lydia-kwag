@@ -70,7 +70,7 @@ export default function Approach() {
               }}
             >
               <div className="mb-5 border-t border-violet-500/20 pt-5">
-                <span className="font-mono text-xs text-violet-400/50 select-none">
+                <span aria-hidden="true" className="font-mono text-xs text-violet-400/50 select-none">
                   {p.num}
                 </span>
               </div>

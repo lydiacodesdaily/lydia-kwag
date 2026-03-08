@@ -17,7 +17,7 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 h-[500px] w-[700px] translate-x-1/3 translate-y-1/3 rounded-full bg-indigo-700/[0.05] blur-[120px]" />
       </div>
       <Nav />
-      <main>
+      <main id="main-content">
         <Hero />
         <Projects />
         <Approach />

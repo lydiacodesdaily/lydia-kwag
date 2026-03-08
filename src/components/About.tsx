@@ -43,7 +43,7 @@ export default function About() {
             </p>
             <div className="pt-2">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-stone-400">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                <span aria-hidden="true" className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
                 Currently building
               </span>
             </div>

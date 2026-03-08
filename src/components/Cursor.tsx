@@ -41,6 +41,7 @@ export default function Cursor() {
 
   return (
     <motion.div
+      aria-hidden="true"
       className="pointer-events-none fixed z-[9999] rounded-full bg-violet-400"
       style={{
         x: dotX,

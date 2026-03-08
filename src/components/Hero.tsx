@@ -146,6 +146,7 @@ export default function Hero() {
 
       {/* Scroll indicator */}
       <motion.div
+        aria-hidden="true"
         className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
