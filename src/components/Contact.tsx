@@ -6,7 +6,7 @@ const links = [
   { label: "Email", href: "mailto:lydia.kwag.dev@gmail.com" },
   { label: "LinkedIn", href: "https://linkedin.com/in/lydiakwag" },
   { label: "GitHub", href: "https://github.com/lydiacodesdaily" },
-  { label: "Resume", href: "/LydiaKwag_Resume.pdf" },
+  { label: "Resume", href: "/LydiaKwag_Resume.pdf", ariaLabel: "Resume (PDF, opens in new tab)", pdf: true },
 ];
 
 export default function Contact() {
@@ -39,15 +39,16 @@ export default function Contact() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            {links.map(({ label, href }) => (
+            {links.map(({ label, href, ariaLabel, pdf }) => (
               <a
                 key={label}
                 href={href}
-                target={href.startsWith("http") ? "_blank" : undefined}
+                aria-label={ariaLabel}
+                target={href.startsWith("http") || pdf ? "_blank" : undefined}
                 rel={
-                  href.startsWith("http") ? "noopener noreferrer" : undefined
+                  href.startsWith("http") || pdf ? "noopener noreferrer" : undefined
                 }
-                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-5 py-2 text-sm font-medium text-stone-300 transition-all duration-300 hover:border-violet-500/40 hover:bg-violet-500/5 hover:text-violet-300 hover:shadow-[0_0_20px_rgba(167,139,250,0.1)]"
+                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-5 py-2 text-sm font-medium text-stone-300 transition-all duration-300 hover:border-violet-500/40 hover:bg-violet-500/5 hover:text-violet-300 hover:shadow-[0_0_20px_rgba(167,139,250,0.1)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-400/60"
               >
                 {label}
               </a>

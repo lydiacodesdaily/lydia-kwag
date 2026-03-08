@@ -159,6 +159,7 @@ type ProjectCardProps = {
   description: string;
   stack: string[];
   link?: string;
+  caseStudyLink?: string;
   image?: string;
   illustrationKey?: IllustrationKey;
   variant?: "featured" | "standard";
@@ -238,6 +239,7 @@ export default function ProjectCard({
   description,
   stack,
   link,
+  caseStudyLink,
   image,
   illustrationKey,
   variant = "standard",
@@ -269,7 +271,7 @@ export default function ProjectCard({
             <p className="mb-3 text-base text-stone-300">{tagline}</p>
             <p className="text-sm leading-relaxed text-stone-500">{description}</p>
           </div>
-          <div className="mt-8 flex items-end justify-between gap-4">
+          <div className="mt-8 space-y-3">
             <div className="flex flex-wrap gap-1.5">
               {stack.map((tag) => (
                 <span
@@ -281,8 +283,8 @@ export default function ProjectCard({
               ))}
             </div>
             {link && (
-              <span className="shrink-0 font-mono text-xs text-violet-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                View →
+              <span aria-hidden="true" className="font-mono text-xs text-violet-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                {caseStudyLink ? "Read case study →" : "View →"}
               </span>
             )}
           </div>
@@ -297,7 +299,7 @@ export default function ProjectCard({
     );
 
     const cardClass =
-      "group flex flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-colors duration-500 hover:border-violet-500/25 hover:bg-white/[0.03] hover:shadow-[0_0_80px_rgba(167,139,250,0.07)] lg:flex-row";
+      "group flex flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-colors duration-500 hover:border-violet-500/25 hover:bg-white/[0.03] hover:shadow-[0_0_80px_rgba(167,139,250,0.07)] lg:flex-row focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]";
 
     return (
       <div
@@ -352,7 +354,7 @@ export default function ProjectCard({
             ))}
           </div>
           {link && (
-            <p className="font-mono text-xs text-violet-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <p aria-hidden="true" className="font-mono text-xs text-violet-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               View →
             </p>
           )}
@@ -362,7 +364,7 @@ export default function ProjectCard({
   );
 
   const cardClass =
-    "group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-colors duration-500 hover:border-violet-500/25 hover:bg-white/[0.03] hover:shadow-[0_0_40px_rgba(167,139,250,0.08)]";
+    "group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] transition-colors duration-500 hover:border-violet-500/25 hover:bg-white/[0.03] hover:shadow-[0_0_40px_rgba(167,139,250,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]";
 
   return (
     <div

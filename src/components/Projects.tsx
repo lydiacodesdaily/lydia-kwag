@@ -11,6 +11,7 @@ type Project = {
   description: string;
   stack: string[];
   link?: string;
+  caseStudyLink?: string;
   illustrationKey: IllustrationKey;
   variant: "featured" | "standard";
 };
@@ -24,6 +25,8 @@ const projects: Project[] = [
     description:
       "Configurable audio cues, time-awareness features, and intelligent task suggestions powered by OpenAI and Claude. ~1,000 active users.",
     stack: ["React Native", "Expo", "OpenAI", "Claude", "React", "Next.js", "TypeScript"],
+    link: "/projects/flowmate",
+    caseStudyLink: "/projects/flowmate",
     illustrationKey: "timer",
     variant: "featured",
   },
