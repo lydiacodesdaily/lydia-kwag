@@ -161,6 +161,7 @@ type ProjectCardProps = {
   link?: string;
   caseStudyLink?: string;
   image?: string;
+  images?: string[];
   illustrationKey?: IllustrationKey;
   variant?: "featured" | "standard";
 };
@@ -175,16 +176,43 @@ const Illustrations: Record<IllustrationKey, () => React.JSX.Element> = {
 
 function VisualZone({
   image,
+  images,
   illustrationKey,
   className = "",
 }: {
   image?: string;
+  images?: string[];
   illustrationKey?: IllustrationKey;
   className?: string;
 }) {
   const IllustrationComponent = illustrationKey
     ? Illustrations[illustrationKey]
     : null;
+
+  if (images && images.length > 0) {
+    return (
+      <div
+        aria-hidden="true"
+        className={`relative overflow-hidden bg-gradient-to-br from-violet-500/[0.08] via-violet-500/[0.03] to-transparent ${className}`}
+      >
+        <div className="flex h-full items-end justify-center gap-2.5 px-6 pt-6">
+          {images.map((src, i) => {
+            const isCenter = i === Math.floor(images.length / 2);
+            return (
+              <img
+                key={src}
+                src={src}
+                alt=""
+                className={`w-[30%] rounded-t-xl object-cover object-top shadow-lg transition-transform ${
+                  isCenter ? "h-[88%]" : "h-[76%]"
+                }`}
+              />
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
 
   if (image) {
     return (
@@ -241,6 +269,7 @@ export default function ProjectCard({
   link,
   caseStudyLink,
   image,
+  images,
   illustrationKey,
   variant = "standard",
 }: ProjectCardProps) {
@@ -292,6 +321,7 @@ export default function ProjectCard({
         {/* Visual */}
         <VisualZone
           image={image}
+          images={images}
           illustrationKey={illustrationKey}
           className="min-h-[240px] lg:w-[42%]"
         />

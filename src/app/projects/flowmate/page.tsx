@@ -104,7 +104,7 @@ export default function FlowMateCaseStudy() {
         {/* ─── Hero ─────────────────────────────────────────────── */}
         <Section className="mx-auto max-w-3xl px-6 pb-16 pt-12">
           <FadeUp className="mb-6 flex flex-wrap items-center gap-2">
-            {["Side Project", "React / Next.js", "Audio Engineering", "Product Engineering", "Character Design"].map((tag) => (
+            {["React / Next.js", "Audio Engineering", "Product Engineering", "Character Design"].map((tag) => (
               <span
                 key={tag}
                 className="rounded-full border border-violet-500/20 bg-violet-500/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-violet-400"

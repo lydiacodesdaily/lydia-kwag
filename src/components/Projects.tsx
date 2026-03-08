@@ -12,7 +12,9 @@ type Project = {
   stack: string[];
   link?: string;
   caseStudyLink?: string;
-  illustrationKey: IllustrationKey;
+  image?: string;
+  images?: string[];
+  illustrationKey?: IllustrationKey;
   variant: "featured" | "standard";
 };
 
@@ -27,7 +29,11 @@ const projects: Project[] = [
     stack: ["React Native", "Expo", "OpenAI", "Claude", "React", "Next.js", "TypeScript"],
     link: "/projects/flowmate",
     caseStudyLink: "/projects/flowmate",
-    illustrationKey: "timer",
+    images: [
+      "/screenshots/flowmate/mobile/fm_m_1.jpg",
+      "/screenshots/flowmate/mobile/fm_m_2.jpg",
+      "/screenshots/flowmate/mobile/fm_m_3.jpg",
+    ],
     variant: "featured",
   },
   {
