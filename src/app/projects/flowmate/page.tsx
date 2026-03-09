@@ -557,7 +557,7 @@ export default function FlowMateCaseStudy() {
             <div className="flex-1">
               <h3 className="mb-2 font-semibold text-stone-100">Hand-drawn character exploration</h3>
               <p className="mb-5 text-sm leading-relaxed text-stone-400">
-                Started with pencil silhouettes to lock in personality before touching code. The tomato shape solved two problems at once: instantly readable as Pomodoro without being literal, and the round form naturally supports expressive facial states. I sketched dozens of face ratios to find one that felt curious but calm — legible at 80px and full-screen.
+                Started with pencil silhouettes to lock in personality before touching code. The tomato shape solved two problems at once: instantly readable as Pomodoro without being literal, and the round form naturally supports expressive facial states. I sketched the tomato character on iPad using Procreate. Built in multiple layers -- initially sketching with pencil tool, then lines, then shades etc.
               </p>
               <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -651,7 +651,7 @@ export default function FlowMateCaseStudy() {
               {/* State descriptions */}
               <ul className="mt-5 space-y-1.5 text-sm text-stone-500">
                 {[
-                  { state: "Idle", desc: "ZZZ floats upward. Slow breathing pulse. Welcoming, not urgent." },
+                  { state: "Idle", desc: "❤️ floats upward. Slow breathing pulse. Welcoming, not urgent." },
                   { state: "Focused", desc: "Pupils enlarge, reflective highlight added. Lightning bolt. No ambient motion — stillness signals intensity." },
                   { state: "Growing", desc: "Progress ring spins. Star pupils. The work is visibly accumulating." },
                   { state: "Break", desc: "Cheeks blush. Eyes soften. Earned rest reads as reward, not failure." },
