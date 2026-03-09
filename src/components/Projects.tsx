@@ -44,6 +44,8 @@ const projects: Project[] = [
     description:
       "Lightweight timer and task manager embedded directly into Flow Club's virtual coworking sessions — stays out of the way.",
     stack: ["Browser Extension", "JavaScript", "WebExtension API"],
+    link: "/projects/flow-club-companion",
+    caseStudyLink: "/projects/flow-club-companion",
     illustrationKey: "extension",
     variant: "standard",
   },
