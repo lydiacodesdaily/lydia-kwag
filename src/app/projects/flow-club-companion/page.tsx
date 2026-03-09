@@ -73,8 +73,8 @@ const FEATURES = [
 const TECH_HIGHLIGHTS = [
   {
     number: "01",
-    label: "Cross-browser, parallel codebases",
-    desc: "Chrome (Manifest V3) and Firefox Add-on maintained in parallel — two meaningfully different extension APIs, two separate publishing pipelines.",
+    label: "Cross-browser, shared abstraction layer",
+    desc: "A shared browser API abstraction unifies Chrome's callback-based and Firefox's Promise-based APIs, keeping the core codebase browser-agnostic. Two separate publishing pipelines (Chrome Web Store, Firefox Add-ons), one unified codebase.",
     color: "text-violet-400",
     border: "border-violet-500/20",
     bg: "bg-violet-500/[0.04]",
@@ -154,7 +154,7 @@ export default function FlowClubCompanionCaseStudy() {
           {/* Stats */}
           <FadeUp className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.06] sm:grid-cols-4">
             {[
-              { number: "~100", label: "Active users" },
+              { number: "100+", label: "Active users" },
               { number: "2", label: "Browsers shipped" },
               { number: "MV3", label: "Architecture" },
               { number: "Solo", label: "Design + eng" },
