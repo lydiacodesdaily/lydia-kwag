@@ -59,6 +59,11 @@ const CHARACTER_STATES = [
 
 const OUTCOME_CARDS = [
   {
+    icon: "◌",
+    title: "Real-world traction",
+    body: "Reached ~1,000 active users across web and Android. Early testers cited spoken cues as the primary behavior change — they stopped checking the clock.",
+  },
+  {
     icon: "◉",
     title: "Audio as a first-class interface",
     body: "40+ ElevenLabs voice cues with five configurable presets. The system was designed so the timer is fully usable without looking at the screen — cues deliver time awareness while your attention stays on the work.",
@@ -131,11 +136,12 @@ export default function FlowMateCaseStudy() {
           </FadeUp>
 
           {/* Stats */}
-          <FadeUp className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.06] sm:grid-cols-4">
+          <FadeUp className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.06] sm:grid-cols-5">
             {[
               { number: "40+", label: "Voice cues" },
               { number: "5", label: "Audio presets" },
               { number: "2", label: "Platforms shipped" },
+              { number: "~1,000", label: "Active users" },
               { number: "Solo", label: "Design + eng" },
             ].map((stat) => (
               <div
@@ -764,8 +770,8 @@ export default function FlowMateCaseStudy() {
             </p>
             <div className="flex flex-wrap gap-2">
               {[
-                "Next.js 16",
-                "React 19",
+                "Next.js",
+                "React",
                 "TypeScript",
                 "Tailwind CSS",
                 "React Native",
