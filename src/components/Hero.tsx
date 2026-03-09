@@ -78,7 +78,7 @@ export default function Hero() {
             <motion.div variants={item} className="mb-8">
               <div className="mb-3 h-px w-10 bg-violet-400/30" />
               <p className="font-mono text-sm text-stone-500">
-                Lydia Kwag&nbsp;&nbsp;·&nbsp;&nbsp;Product Engineer
+                Lydia Kwag&nbsp;&nbsp;·&nbsp;&nbsp;Senior Product & Front-End Engineer
               </p>
             </motion.div>
 

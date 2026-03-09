@@ -41,6 +41,14 @@ export default function About() {
               interface design, interaction details, and the clarity of
               language.
             </p>
+            <p className="text-base leading-relaxed text-stone-500">
+              Outside of software, I&rsquo;m drawn to quiet routines — slow
+              runs with audiobooks, tea rituals, a bit of piano. I also organize
+              Drawing Northern Virginia, a local meetup where artists sketch
+              outdoors together. Many of the ideas behind my work — calm
+              interfaces, time awareness, reduced cognitive load — come from
+              these everyday rhythms.
+            </p>
             <div className="pt-2">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-stone-400">
                 <span aria-hidden="true" className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
