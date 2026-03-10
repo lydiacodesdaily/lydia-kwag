@@ -2,13 +2,6 @@
 
 import { motion } from "framer-motion";
 
-const links = [
-  { label: "Email", href: "mailto:lydia.kwag.dev@gmail.com" },
-  { label: "LinkedIn", href: "https://linkedin.com/in/lydiakwag" },
-  { label: "GitHub", href: "https://github.com/lydiacodesdaily" },
-  { label: "Resume", href: "/LydiaKwag_Resume.pdf", ariaLabel: "Resume (PDF, opens in new tab)", pdf: true },
-];
-
 export default function Contact() {
   return (
     <section id="contact" className="border-t border-white/[0.06] px-6 py-32">
@@ -32,27 +25,72 @@ export default function Contact() {
               focus, or human-centered software.
             </p>
           </motion.div>
+
           <motion.div
-            className="flex flex-wrap gap-3"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            {links.map(({ label, href, ariaLabel, pdf }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={ariaLabel}
-                target={href.startsWith("http") || pdf ? "_blank" : undefined}
-                rel={
-                  href.startsWith("http") || pdf ? "noopener noreferrer" : undefined
-                }
-                className="rounded-full border border-white/[0.08] bg-white/[0.03] px-5 py-2 text-sm font-medium text-stone-300 transition-all duration-300 hover:border-violet-500/40 hover:bg-violet-500/5 hover:text-violet-300 hover:shadow-[0_0_20px_rgba(167,139,250,0.1)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-400/60"
-              >
-                {label}
-              </a>
-            ))}
+            <span className="inline-flex relative group/stack gap-2 sm:gap-0">
+
+              {/* Email */}
+              <div className="relative group/email sm:transform sm:-rotate-6 sm:group-hover/stack:rotate-0 sm:translate-x-2 sm:group-hover/stack:translate-x-0 transition-all duration-200 z-10">
+                <a href="mailto:lydia.kwag.dev@gmail.com">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/24/Gmail_Faenza.svg"
+                    alt="Email"
+                    className="w-10 h-10 rounded-xl cursor-pointer"
+                  />
+                </a>
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white px-2.5 py-1 rounded-xl bg-opacity-80 text-xs opacity-0 group-hover/email:opacity-100 transition-opacity whitespace-nowrap hidden sm:block">
+                  lydia.kwag.dev@gmail.com
+                </span>
+              </div>
+
+              {/* LinkedIn */}
+              <div className="relative group/linkedin sm:transform sm:rotate-3 sm:group-hover/stack:rotate-0 sm:group-hover/stack:translate-x-2 transition-all duration-200 z-20">
+                <a href="https://linkedin.com/in/lydiakwag" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
+                    alt="LinkedIn"
+                    className="w-10 h-10 rounded-xl cursor-pointer"
+                  />
+                </a>
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white px-2.5 py-1 rounded-xl bg-opacity-80 text-xs opacity-0 group-hover/linkedin:opacity-100 transition-opacity whitespace-nowrap hidden sm:block">
+                  @lydiakwag
+                </span>
+              </div>
+
+              {/* GitHub */}
+              <div className="relative group/github sm:transform sm:-rotate-6 sm:group-hover/stack:rotate-0 sm:-translate-x-4 sm:group-hover/stack:translate-x-4 transition-all duration-200 z-30">
+                <a href="https://github.com/lydiacodesdaily" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+                    alt="GitHub"
+                    className="w-10 h-10 rounded-xl cursor-pointer bg-white p-1"
+                  />
+                </a>
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white px-2.5 py-1 rounded-xl bg-opacity-80 text-xs opacity-0 group-hover/github:opacity-100 transition-opacity whitespace-nowrap hidden sm:block">
+                  @lydiacodesdaily
+                </span>
+              </div>
+
+              {/* Resume */}
+              <div className="relative group/resume sm:transform sm:rotate-6 sm:group-hover/stack:rotate-0 sm:-translate-x-6 sm:group-hover/stack:translate-x-6 transition-all duration-200 z-40">
+                <a href="/LydiaKwag_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/2/23/Deepin_Icon_Theme_%E2%80%93_application-x-yaml_%282%29.svg"
+                    alt="Resume"
+                    className="w-10 h-10 rounded-xl cursor-pointer"
+                  />
+                </a>
+                <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white px-2.5 py-1 rounded-xl bg-opacity-80 text-xs opacity-0 group-hover/resume:opacity-100 transition-opacity whitespace-nowrap hidden sm:block">
+                  Resume
+                </span>
+              </div>
+
+            </span>
           </motion.div>
         </div>
       </div>
