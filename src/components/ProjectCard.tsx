@@ -162,6 +162,7 @@ type ProjectCardProps = {
   caseStudyLink?: string;
   image?: string;
   images?: string[];
+  video?: string;
   illustrationKey?: IllustrationKey;
   variant?: "featured" | "standard";
 };
@@ -177,17 +178,38 @@ const Illustrations: Record<IllustrationKey, () => React.JSX.Element> = {
 function VisualZone({
   image,
   images,
+  video,
   illustrationKey,
   className = "",
 }: {
   image?: string;
   images?: string[];
+  video?: string;
   illustrationKey?: IllustrationKey;
   className?: string;
 }) {
   const IllustrationComponent = illustrationKey
     ? Illustrations[illustrationKey]
     : null;
+
+  if (video) {
+    return (
+      <div
+        aria-hidden="true"
+        className={`relative overflow-hidden bg-black/40 ${className}`}
+      >
+        <video
+          src={video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-cover object-center"
+        />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#0a0a0a]/80 to-transparent" />
+      </div>
+    );
+  }
 
   if (images && images.length > 0) {
     return (
@@ -270,6 +292,7 @@ export default function ProjectCard({
   caseStudyLink,
   image,
   images,
+  video,
   illustrationKey,
   variant = "standard",
 }: ProjectCardProps) {
@@ -322,6 +345,7 @@ export default function ProjectCard({
         <VisualZone
           image={image}
           images={images}
+          video={video}
           illustrationKey={illustrationKey}
           className="min-h-[240px] lg:w-[42%]"
         />

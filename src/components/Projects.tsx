@@ -25,15 +25,11 @@ const projects: Project[] = [
     badge: "App Store",
     tagline: "AI-enhanced focus timer for people who need more than a Pomodoro",
     description:
-      "Configurable audio cues, time-awareness features, and intelligent task suggestions powered by OpenAI and Claude. ~1,000 active users.",
+      "Configurable audio cues, time-awareness features, and intelligent task suggestions powered by OpenAI. 1,000+ active users.",
     stack: ["React Native", "Expo", "OpenAI", "Claude", "React", "Next.js", "TypeScript"],
     link: "/projects/flowmate",
     caseStudyLink: "/projects/flowmate",
-    images: [
-      "/screenshots/flowmate/mobile/fm_m_1.jpg",
-      "/screenshots/flowmate/mobile/fm_m_2.jpg",
-      "/screenshots/flowmate/mobile/fm_m_3.jpg",
-    ],
+    video: "/screenshots/flowmate/flomato/progress/flomato_timer.mp4",
     variant: "featured",
   },
   {
