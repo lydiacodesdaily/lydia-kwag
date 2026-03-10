@@ -53,9 +53,10 @@ const GROWTH_STAGES = [
 ];
 
 const CHARACTER_STATES = [
-  { src: "/screenshots/flowmate/flomato/state/flomato_daydreaming.png", label: "Idle", desc: "Daydreaming between sessions", color: "text-sky-400", border: "border-sky-500/30", bg: "bg-sky-500/[0.06]" },
-  { src: "/screenshots/flowmate/flomato/state/flomato_focus.png", label: "Focused", desc: "Deep work mode — locked in", color: "text-orange-400", border: "border-orange-500/30", bg: "bg-orange-500/[0.06]" },
-  { src: "/screenshots/flowmate/flomato/state/flomato_relaxing.png", label: "Break", desc: "Earned rest — soft and recharged", color: "text-violet-400", border: "border-violet-500/30", bg: "bg-violet-500/[0.06]" },
+  { src: "/screenshots/flowmate/flomato/state/flomato_daydreaming.png", label: "Idle", desc: "Pondering between sessions", color: "text-sky-400", border: "border-sky-500/30", bg: "bg-sky-500/[0.06]" },
+  { src: "/screenshots/flowmate/flomato/state/flomato_focus.png", label: "Focused", desc: "Wired glasses on, locked in on the laptop", color: "text-orange-400", border: "border-orange-500/30", bg: "bg-orange-500/[0.06]" },
+  { src: "/screenshots/flowmate/flomato/state/flomato_relaxing.png", label: "Break", desc: "Sinking into the bean bag with a matcha latte", color: "text-violet-400", border: "border-violet-500/30", bg: "bg-violet-500/[0.06]" },
+  { src: "/screenshots/flowmate/flomato/state/flomato_celebrating.png", label: "Celebrating", desc: "Bouncing with confetti — session complete", color: "text-green-400", border: "border-green-500/30", bg: "bg-green-500/[0.06]" },
 ];
 
 const OUTCOME_CARDS = [
@@ -95,11 +96,10 @@ const AUDIO_PRESETS = [
 ];
 
 const SESSION_ARC = [
-  { phase: "Pre-session", state: "Idle", note: "Daydreaming", stateIdx: 0 },
+  { phase: "Pre-session", state: "Idle", note: "Pondering", stateIdx: 0 },
   { phase: "Session starts", state: "Focused", note: "Locked in", stateIdx: 1 },
-  { phase: "Progress builds", state: "Growing", note: "Visible momentum", stateIdx: -1 },
   { phase: "Break time", state: "Break", note: "Earned rest", stateIdx: 2 },
-  { phase: "Session done", state: "Celebration", note: "Positive closure", stateIdx: -1 },
+  { phase: "Session done", state: "Celebrating", note: "Confetti!", stateIdx: 3 },
 ];
 
 function MobileCarousel() {
@@ -201,50 +201,46 @@ function AudioPresetPicker() {
 }
 
 function CharacterStateExplorer() {
-  const [active, setActive] = useState(1);
+  const [active, setActive] = useState(0);
+  const state = CHARACTER_STATES[active];
   return (
-    <div>
-      <div className="mb-4 grid grid-cols-3 gap-3">
-        {CHARACTER_STATES.map((state, i) => (
-          <motion.button
-            key={state.label}
+    <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+      {/* Tab strip */}
+      <div className="flex border-b border-white/[0.06]">
+        {CHARACTER_STATES.map((s, i) => (
+          <button
+            key={s.label}
             onClick={() => setActive(i)}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className={`overflow-hidden rounded-xl border p-4 text-center transition-all duration-200 ${
-              i === active ? `${state.border} ${state.bg}` : "border-white/[0.06] bg-white/[0.02]"
+            className={`flex-1 py-2.5 font-mono text-[11px] uppercase tracking-wider transition-all duration-200 ${
+              i === active ? `${s.color} ${s.bg}` : "text-stone-600 hover:text-stone-400"
             }`}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={state.src}
-              alt={`Flowmato ${state.label} state`}
-              className="mx-auto mb-3 h-20 w-20 object-contain"
-            />
-            <p className={`mb-0.5 font-mono text-xs font-semibold uppercase tracking-wider ${i === active ? state.color : "text-stone-600"}`}>
-              {state.label}
-            </p>
-            <p className="text-[11px] leading-snug text-stone-600">{state.desc}</p>
-          </motion.button>
+            {s.label}
+          </button>
         ))}
       </div>
+      {/* Preview */}
       <AnimatePresence mode="wait">
         <motion.div
           key={active}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.25 }}
-          className={`rounded-xl border ${CHARACTER_STATES[active].border} ${CHARACTER_STATES[active].bg} px-5 py-4`}
+          transition={{ duration: 0.2 }}
+          className="flex items-center gap-6 px-6 py-5"
         >
-          <p className={`mb-1 font-mono text-[10px] uppercase tracking-widest ${CHARACTER_STATES[active].color}`}>
-            {CHARACTER_STATES[active].label} state
-          </p>
-          <p className="text-sm text-stone-400">
-            {active === 0 && "❤️ floats upward. Slow breathing pulse. Welcoming, not urgent."}
-            {active === 1 && "Pupils enlarge, reflective highlight added. Lightning bolt. No ambient motion — stillness signals intensity."}
-            {active === 2 && "Cheeks blush. Eyes soften. Earned rest reads as reward, not failure."}
-          </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={state.src}
+            alt={`Flomato ${state.label}`}
+            className="h-24 w-24 shrink-0 object-contain"
+          />
+          <div>
+            <p className={`mb-1 font-mono text-[10px] uppercase tracking-widest ${state.color}`}>
+              {state.label}
+            </p>
+            <p className="text-sm leading-relaxed text-stone-400">{state.desc}</p>
+          </div>
         </motion.div>
       </AnimatePresence>
     </div>
@@ -301,7 +297,7 @@ function GrowthStagesInteractive() {
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
         >
           <div className={`flex h-20 w-20 items-center justify-center overflow-hidden rounded-xl border transition-all duration-200 ${
-            hovered === i ? "border-violet-500/30 bg-violet-500/[0.06]" : "border-white/[0.06] bg-white/[0.02]"
+            hovered === i ? "border-violet-500/40 bg-violet-900/30" : "border-emerald-900/40 bg-emerald-950/60"
           }`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={stage.src} alt={stage.label} className="h-14 w-14 object-contain" />
@@ -463,7 +459,7 @@ export default function FlowMateCaseStudy() {
             <div className="flex-1">
               <h3 className="mb-2 font-semibold text-stone-100">Hand-drawn character exploration</h3>
               <p className="mb-5 text-sm leading-relaxed text-stone-400">
-                Started with pencil silhouettes to lock in personality before touching code. The tomato shape solved two problems at once: instantly readable as Pomodoro without being literal, and the round form naturally supports expressive facial states. I sketched the tomato character on iPad using Procreate. Built in multiple layers -- initially sketching with pencil tool, then lines, then shades etc.
+                Started with pencil silhouettes to lock in personality before touching code. The tomato shape solved two problems at once: instantly readable as Pomodoro without being literal, and the round form naturally supports expressive facial states. I sketched the character in Procreate on iPad, building in layers — rough pencil sketch, then linework, then shading.
               </p>
               <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -482,9 +478,9 @@ export default function FlowMateCaseStudy() {
               2
             </div>
             <div className="flex-1">
-              <h3 className="mb-2 font-semibold text-stone-100">AI as a divergence tool, not the designer</h3>
+              <h3 className="mb-2 font-semibold text-stone-100">AI as a divergence tool</h3>
               <p className="mb-5 text-sm leading-relaxed text-stone-400">
-                Used AI image generation to rapidly stress-test silhouette readability, emotional clarity, and pose range — not to produce final assets, but to compress divergent exploration. Generated ~60 variations in under an hour to evaluate and discard directions that would have taken days to sketch. The questions driving each batch were specific: does this pose read as focused or strained at small size? Does the eye shape communicate warmth without looking childish? The strongest signals were distilled back into clean, manually refined SVG paths. Every final path was drawn deliberately, not generated.
+                Used AI image generation to rapidly stress-test silhouette readability, emotional clarity, and pose range — not to produce final assets, but to compress divergent exploration. Generated ~60 variations in under an hour to evaluate and discard directions that would have taken days to sketch. The questions driving each batch were specific: does this pose read as focused or strained at small size? Does the eye shape communicate warmth and support?
               </p>
               <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -505,7 +501,7 @@ export default function FlowMateCaseStudy() {
             <div className="flex-1">
               <h3 className="mb-2 font-semibold text-stone-100">Mapping states to the session arc</h3>
               <p className="mb-5 text-sm leading-relaxed text-stone-400">
-                Each visual state maps to a real moment in a focus session. The design constraint was precise: every change in eyes, posture, color, and animation had to communicate a distinct phase — immediately and without text labels. The visual states mirror the same phases that audio cues demarcate, so both channels reinforce each other.
+                Each visual state maps to a real moment in a focus session. The design constraint was precise: posture, expression, and animation had to communicate a distinct phase — immediately and without text labels. The four states mirror the same arc that audio cues demarcate, so both channels reinforce each other.
               </p>
 
               {/* Interactive session arc */}
@@ -517,11 +513,10 @@ export default function FlowMateCaseStudy() {
               {/* State descriptions */}
               <ul className="mt-5 space-y-1.5 text-sm text-stone-500">
                 {[
-                  { state: "Idle", desc: "❤️ floats upward. Slow breathing pulse. Welcoming, not urgent." },
-                  { state: "Focused", desc: "Pupils enlarge, reflective highlight added. Lightning bolt. No ambient motion — stillness signals intensity." },
-                  { state: "Growing", desc: "Progress ring spins. Star pupils. The work is visibly accumulating." },
-                  { state: "Break", desc: "Cheeks blush. Eyes soften. Earned rest reads as reward, not failure." },
-                  { state: "Celebration", desc: "Arms up. Wide smile. Positive closure matters — the session ended, it didn't just stop." },
+                  { state: "Idle", desc: "❤️ floats upward. A slow breathing pulse — welcoming, not urgent. Flomato is thinking." },
+                  { state: "Focused", desc: "Wired glasses on, eyes fixed on the laptop. No ambient motion — stillness signals intensity." },
+                  { state: "Break", desc: "Sunk into a bean bag with a matcha latte. Earned rest reads as reward, not obligation." },
+                  { state: "Celebrating", desc: "Bouncing up and down with confetti flying. The session ended — Flomato marks the moment." },
                 ].map((item) => (
                   <li key={item.state} className="flex gap-2">
                     <span className="shrink-0 text-violet-400/60">—</span>
@@ -954,11 +949,16 @@ export default function FlowMateCaseStudy() {
             <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-violet-400/70">
               The App
             </p>
-            <h2 className="text-2xl font-semibold tracking-tight text-stone-100">
-              Shipped on Android &amp; Web
-            </h2>
+            <div className="flex flex-wrap items-center gap-3">
+              <h2 className="text-2xl font-semibold tracking-tight text-stone-100">
+                Shipped on Android &amp; Web
+              </h2>
+              <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-orange-400">
+                iOS · In Review
+              </span>
+            </div>
             <p className="mt-2 text-sm text-stone-500">
-              Both platforms share the same timer logic, state machine, and audio system via a shared monorepo package.
+              All platforms share the same timer logic, state machine, and audio system via a shared monorepo package.
             </p>
           </FadeUp>
           <FadeUp className="flex justify-center">
@@ -1083,6 +1083,12 @@ export default function FlowMateCaseStudy() {
             >
               Android app →
             </a>
+            <div className="flex items-center gap-2 rounded-xl border border-orange-500/20 bg-orange-500/[0.04] px-6 py-3">
+              <span className="text-sm font-semibold text-stone-500">iOS app</span>
+              <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-orange-400">
+                In Review
+              </span>
+            </div>
           </FadeUp>
         </Section>
       </main>
