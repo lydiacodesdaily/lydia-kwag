@@ -141,10 +141,20 @@ export default function Hero() {
             {/* Supporting copy */}
             <motion.p
               variants={item}
-              className="mb-10 text-base leading-relaxed text-stone-400"
+              className="mb-3 text-base leading-relaxed text-stone-400"
             >
               AI-assisted tools, browser extensions, and calm software systems
               designed to reduce cognitive load.
+            </motion.p>
+
+            {/* Status line */}
+            <motion.p
+              variants={item}
+              className="mb-10 text-sm leading-relaxed text-stone-600"
+            >
+              After a decade in federal contracting, I left to build at the
+              intersection of front-end engineering and AI. Now looking for my
+              next team.
             </motion.p>
 
             {/* Stack icons */}

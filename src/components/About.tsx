@@ -49,6 +49,22 @@ export default function About() {
               interfaces, time awareness, reduced cognitive load — come from
               these everyday rhythms.
             </p>
+            <p className="text-base leading-relaxed text-stone-500">
+              Before Lydia Studio, I spent a decade doing serious front-end work
+              across federal health, defense, and intelligence platforms at SAIC
+              and Novetta. That work taught me how much architecture and reusable
+              component systems matter when products need to scale across teams
+              and long lifecycles.
+            </p>
+            <p className="text-base leading-relaxed text-stone-500">
+              As AI began reshaping the industry, I made a deliberate choice to
+              be part of building it rather than watching from the sidelines. I
+              left federal contracting, enrolled in Penn&rsquo;s CS graduate
+              program to study ML and AI formally, and started building my own
+              AI-powered tools. I&rsquo;m now looking to bring that combination
+              — deep front-end foundations, product thinking, and hands-on AI
+              integration — to a team doing work that matters.
+            </p>
             <div className="pt-2">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-stone-400">
                 <span aria-hidden="true" className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
