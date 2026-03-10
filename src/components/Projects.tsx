@@ -14,6 +14,7 @@ type Project = {
   caseStudyLink?: string;
   image?: string;
   images?: string[];
+  video?: string;
   illustrationKey?: IllustrationKey;
   variant: "featured" | "standard";
 };
