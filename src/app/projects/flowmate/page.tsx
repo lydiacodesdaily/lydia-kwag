@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { motion, type Variants, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -52,16 +53,16 @@ const GROWTH_STAGES = [
 ];
 
 const CHARACTER_STATES = [
-  { src: "/screenshots/flowmate/flomato/state/flomato_daydreaming.png", label: "Idle", desc: "Daydreaming between sessions", color: "text-sky-400" },
-  { src: "/screenshots/flowmate/flomato/state/flomato_focus.png", label: "Focused", desc: "Deep work mode — locked in", color: "text-orange-400" },
-  { src: "/screenshots/flowmate/flomato/state/flomato_relaxing.png", label: "Break", desc: "Earned rest — soft and recharged", color: "text-violet-400" },
+  { src: "/screenshots/flowmate/flomato/state/flomato_daydreaming.png", label: "Idle", desc: "Daydreaming between sessions", color: "text-sky-400", border: "border-sky-500/30", bg: "bg-sky-500/[0.06]" },
+  { src: "/screenshots/flowmate/flomato/state/flomato_focus.png", label: "Focused", desc: "Deep work mode — locked in", color: "text-orange-400", border: "border-orange-500/30", bg: "bg-orange-500/[0.06]" },
+  { src: "/screenshots/flowmate/flomato/state/flomato_relaxing.png", label: "Break", desc: "Earned rest — soft and recharged", color: "text-violet-400", border: "border-violet-500/30", bg: "bg-violet-500/[0.06]" },
 ];
 
 const OUTCOME_CARDS = [
   {
     icon: "◌",
-    title: "Real-world traction",
-    body: "Reached ~1,000 active users across web and Android. Early testers cited spoken cues as the primary behavior change — they stopped checking the clock.",
+    title: "1,000+ active users",
+    body: "Reached 1,000+ active users across web and Android. Early testers cited spoken cues as the primary behavior change — they stopped checking the clock.",
   },
   {
     icon: "◉",
@@ -84,6 +85,290 @@ const OUTCOME_CARDS = [
     body: "Modeling everything from a single timerPhase value meant audio cues, visual state, and PiP stayed synchronized. Adding a new state required one config entry — not a chain of event handlers.",
   },
 ];
+
+const AUDIO_PRESETS = [
+  { name: "Full", desc: "All cue types enabled — seconds markers, minute calls, halfway point, countdown. Maximum time awareness.", color: "text-violet-400", border: "border-violet-500/30", bg: "bg-violet-500/[0.06]" },
+  { name: "Gentle", desc: "Softer tones, less frequent cues. For work that benefits from ambient awareness without regular interruption.", color: "text-sky-400", border: "border-sky-500/20", bg: "bg-sky-500/[0.04]" },
+  { name: "Minimal", desc: "Key announcements only — halfway and final countdown. Quiet but oriented.", color: "text-emerald-400", border: "border-emerald-500/20", bg: "bg-emerald-500/[0.04]" },
+  { name: "Silent", desc: "No audio. Visual-only mode for environments where sound isn't possible.", color: "text-stone-400", border: "border-stone-500/20", bg: "bg-stone-500/[0.03]" },
+  { name: "Hi-Fi", desc: "Full cues with a richer, more present voice. Designed for focused solo sessions where the voice feels like company.", color: "text-orange-400", border: "border-orange-500/20", bg: "bg-orange-500/[0.04]" },
+];
+
+const SESSION_ARC = [
+  { phase: "Pre-session", state: "Idle", note: "Daydreaming", stateIdx: 0 },
+  { phase: "Session starts", state: "Focused", note: "Locked in", stateIdx: 1 },
+  { phase: "Progress builds", state: "Growing", note: "Visible momentum", stateIdx: -1 },
+  { phase: "Break time", state: "Break", note: "Earned rest", stateIdx: 2 },
+  { phase: "Session done", state: "Celebration", note: "Positive closure", stateIdx: -1 },
+];
+
+function MobileCarousel() {
+  const [active, setActive] = useState(0);
+  return (
+    <div className="flex flex-col items-center gap-6">
+      <div className="relative flex items-center justify-center">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -30 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="flex flex-col items-center gap-3"
+          >
+            <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={MOBILE_SCREENSHOTS[active].src}
+                alt={MOBILE_SCREENSHOTS[active].caption}
+                className="h-[380px] w-[175px] object-cover object-top"
+              />
+            </div>
+            <p className="max-w-[260px] text-center text-[11px] leading-snug text-stone-500">
+              {MOBILE_SCREENSHOTS[active].caption}
+            </p>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Dots + arrows */}
+      <div className="flex items-center gap-4">
+        <button
+          onClick={() => setActive((p) => (p - 1 + MOBILE_SCREENSHOTS.length) % MOBILE_SCREENSHOTS.length)}
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-stone-500 transition hover:border-violet-500/30 hover:text-violet-400"
+          aria-label="Previous"
+        >
+          ←
+        </button>
+        <div className="flex gap-1.5">
+          {MOBILE_SCREENSHOTS.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === active ? "w-6 bg-violet-400" : "w-1.5 bg-stone-700 hover:bg-stone-500"}`}
+              aria-label={`Screenshot ${i + 1}`}
+            />
+          ))}
+        </div>
+        <button
+          onClick={() => setActive((p) => (p + 1) % MOBILE_SCREENSHOTS.length)}
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-stone-500 transition hover:border-violet-500/30 hover:text-violet-400"
+          aria-label="Next"
+        >
+          →
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function AudioPresetPicker() {
+  const [active, setActive] = useState(0);
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
+      <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-stone-600">
+        Five audio presets — click to explore
+      </p>
+      <div className="mb-5 flex flex-wrap gap-2">
+        {AUDIO_PRESETS.map((preset, i) => (
+          <button
+            key={preset.name}
+            onClick={() => setActive(i)}
+            className={`rounded-lg border px-3 py-1.5 font-mono text-[11px] transition-all duration-200 ${
+              i === active
+                ? `${preset.border} ${preset.bg} ${preset.color}`
+                : "border-white/[0.05] bg-white/[0.01] text-stone-600 hover:text-stone-400"
+            }`}
+          >
+            {preset.name}
+          </button>
+        ))}
+      </div>
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={active}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.2 }}
+          className="text-sm leading-relaxed text-stone-400"
+        >
+          {AUDIO_PRESETS[active].desc}
+        </motion.p>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function CharacterStateExplorer() {
+  const [active, setActive] = useState(1);
+  return (
+    <div>
+      <div className="mb-4 grid grid-cols-3 gap-3">
+        {CHARACTER_STATES.map((state, i) => (
+          <motion.button
+            key={state.label}
+            onClick={() => setActive(i)}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className={`overflow-hidden rounded-xl border p-4 text-center transition-all duration-200 ${
+              i === active ? `${state.border} ${state.bg}` : "border-white/[0.06] bg-white/[0.02]"
+            }`}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={state.src}
+              alt={`Flowmato ${state.label} state`}
+              className="mx-auto mb-3 h-20 w-20 object-contain"
+            />
+            <p className={`mb-0.5 font-mono text-xs font-semibold uppercase tracking-wider ${i === active ? state.color : "text-stone-600"}`}>
+              {state.label}
+            </p>
+            <p className="text-[11px] leading-snug text-stone-600">{state.desc}</p>
+          </motion.button>
+        ))}
+      </div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={active}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.25 }}
+          className={`rounded-xl border ${CHARACTER_STATES[active].border} ${CHARACTER_STATES[active].bg} px-5 py-4`}
+        >
+          <p className={`mb-1 font-mono text-[10px] uppercase tracking-widest ${CHARACTER_STATES[active].color}`}>
+            {CHARACTER_STATES[active].label} state
+          </p>
+          <p className="text-sm text-stone-400">
+            {active === 0 && "❤️ floats upward. Slow breathing pulse. Welcoming, not urgent."}
+            {active === 1 && "Pupils enlarge, reflective highlight added. Lightning bolt. No ambient motion — stillness signals intensity."}
+            {active === 2 && "Cheeks blush. Eyes soften. Earned rest reads as reward, not failure."}
+          </p>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function InteractiveSessionArc() {
+  const [activeStep, setActiveStep] = useState<number | null>(null);
+  return (
+    <div className="mb-6 overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-4">
+      <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-stone-600">Session arc — hover to explore</p>
+      <div className="flex items-center gap-0 overflow-x-auto">
+        {SESSION_ARC.map((step, i, arr) => (
+          <div key={step.state} className="flex shrink-0 items-center">
+            <motion.div
+              className="flex flex-col items-center gap-1 cursor-pointer rounded-lg px-3 py-2 text-center transition-all duration-200"
+              onHoverStart={() => setActiveStep(i)}
+              onHoverEnd={() => setActiveStep(null)}
+              animate={{
+                backgroundColor: activeStep === i ? "rgba(167,139,250,0.08)" : "transparent",
+              }}
+            >
+              <span className={`font-mono text-[9px] uppercase tracking-wider transition-colors duration-200 ${activeStep === i ? "text-stone-400" : "text-stone-600"}`}>
+                {step.phase}
+              </span>
+              <span className={`text-xs font-semibold transition-colors duration-200 ${activeStep === i ? "text-violet-300" : "text-violet-400"}`}>
+                {step.state}
+              </span>
+              <span className={`text-[10px] transition-colors duration-200 ${activeStep === i ? "text-stone-500" : "text-stone-600"}`}>
+                {step.note}
+              </span>
+            </motion.div>
+            {i < arr.length - 1 && (
+              <span className={`shrink-0 font-mono transition-colors duration-200 ${activeStep === i || activeStep === i + 1 ? "text-violet-600" : "text-stone-700"}`}>→</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function GrowthStagesInteractive() {
+  const [hovered, setHovered] = useState<number | null>(null);
+  return (
+    <div className="flex gap-3 overflow-x-auto px-6 pb-4 sm:justify-center">
+      {GROWTH_STAGES.map((stage, i) => (
+        <motion.div
+          key={stage.label}
+          className="flex shrink-0 flex-col items-center gap-2 cursor-pointer"
+          onHoverStart={() => setHovered(i)}
+          onHoverEnd={() => setHovered(null)}
+          animate={{ y: hovered === i ? -4 : 0 }}
+          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        >
+          <div className={`flex h-20 w-20 items-center justify-center overflow-hidden rounded-xl border transition-all duration-200 ${
+            hovered === i ? "border-violet-500/30 bg-violet-500/[0.06]" : "border-white/[0.06] bg-white/[0.02]"
+          }`}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={stage.src} alt={stage.label} className="h-14 w-14 object-contain" />
+          </div>
+          <span className={`font-mono text-[9px] uppercase tracking-wider transition-colors duration-200 ${hovered === i ? "text-violet-400" : "text-stone-600"}`}>
+            {i + 1}. {stage.label}
+          </span>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function TimerVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const toggle = () => {
+    if (!videoRef.current) return;
+    if (playing) {
+      videoRef.current.pause();
+      setPlaying(false);
+    } else {
+      videoRef.current.play();
+      setPlaying(true);
+    }
+  };
+
+  return (
+    <div className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+      <video
+        ref={videoRef}
+        src="/screenshots/flowmate/flomato/progress/flomato_timer.mp4"
+        loop
+        playsInline
+        muted
+        className="w-full"
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+      />
+      <button
+        onClick={toggle}
+        className="absolute inset-0 flex items-center justify-center transition-opacity duration-200 group-hover:opacity-100"
+        style={{ opacity: playing ? 0 : 1 }}
+        aria-label={playing ? "Pause" : "Play"}
+      >
+        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white text-xl transition-transform duration-200 hover:scale-110">
+          {playing ? "⏸" : "▶"}
+        </div>
+      </button>
+      {playing && (
+        <button
+          onClick={toggle}
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-200"
+          aria-label="Pause"
+        >
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-black/60 backdrop-blur-sm border border-white/10 text-white text-xl transition-transform duration-200 hover:scale-110">
+            ⏸
+          </div>
+        </button>
+      )}
+      <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+        <p className="font-mono text-[9px] uppercase tracking-widest text-white/40">Flowmato growing — live session</p>
+      </div>
+    </div>
+  );
+}
 
 export default function FlowMateCaseStudy() {
   return (
@@ -127,21 +412,21 @@ export default function FlowMateCaseStudy() {
               An audio-guided timer built around one intent
             </p>
             <p className="mb-3 text-sm leading-relaxed text-stone-400">
+              Built solo: product strategy, full-stack engineering, audio system design, and character illustration — from first sketch to shipped app on web and Android.
+            </p>
+            <p className="mb-3 text-sm leading-relaxed text-stone-400">
               Most timers ask you to watch them. FlowMate delivers time awareness through audio — spoken cues that keep you oriented through the arc of a session without pulling your attention away from the work.
               Before each session starts, you name one thing you&apos;re focusing on. That single intent anchors the session, and the timer runs from there.
-            </p>
-            <p className="text-sm leading-relaxed text-stone-500">
-              Built solo: product strategy, full-stack engineering, audio system design, and character illustration — from first sketch to shipped app on web and Android.
             </p>
           </FadeUp>
 
           {/* Stats */}
           <FadeUp className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.06] sm:grid-cols-5">
             {[
+              { number: "~1,000", label: "Active users" },
               { number: "40+", label: "Voice cues" },
               { number: "5", label: "Audio presets" },
               { number: "2", label: "Platforms shipped" },
-              { number: "~1,000", label: "Active users" },
               { number: "Solo", label: "Design + eng" },
             ].map((stat) => (
               <div
@@ -152,6 +437,124 @@ export default function FlowMateCaseStudy() {
                 <span className="font-mono text-[10px] uppercase tracking-widest text-stone-600">{stat.label}</span>
               </div>
             ))}
+          </FadeUp>
+        </Section>
+
+        {/* ─── Visual Layer — Flowmato ──────────────────────────── */}
+        <Section className="mx-auto max-w-3xl px-6 py-16">
+          <FadeUp>
+            <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-stone-600">
+              Visual Layer
+            </p>
+            <h2 className="mb-2 text-2xl font-semibold tracking-tight text-stone-100">
+              Flowmato — visual reinforcement
+            </h2>
+            <p className="mb-10 text-sm leading-relaxed text-stone-500">
+              When you are looking at the screen, Flowmato reflects where you are in the session. It is the visual counterpart to the audio system — not the primary mechanism,
+              but a reinforcing layer for the moments when your eyes are on the app. The character and the cues represent the same underlying state through different channels.
+            </p>
+          </FadeUp>
+
+          {/* Step 1 */}
+          <FadeUp className="mb-10 flex gap-5">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-violet-500/30 bg-violet-500/10 font-mono text-sm font-semibold text-violet-400">
+              1
+            </div>
+            <div className="flex-1">
+              <h3 className="mb-2 font-semibold text-stone-100">Hand-drawn character exploration</h3>
+              <p className="mb-5 text-sm leading-relaxed text-stone-400">
+                Started with pencil silhouettes to lock in personality before touching code. The tomato shape solved two problems at once: instantly readable as Pomodoro without being literal, and the round form naturally supports expressive facial states. I sketched the tomato character on iPad using Procreate. Built in multiple layers -- initially sketching with pencil tool, then lines, then shades etc.
+              </p>
+              <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/screenshots/flowmate/flomato/handdrawn_flowmato.png"
+                  alt="Hand-drawn Flowmato sketch"
+                  className="h-48 w-full object-contain p-6"
+                />
+              </div>
+            </div>
+          </FadeUp>
+
+          {/* Step 2 */}
+          <FadeUp className="mb-10 flex gap-5">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-violet-500/30 bg-violet-500/10 font-mono text-sm font-semibold text-violet-400">
+              2
+            </div>
+            <div className="flex-1">
+              <h3 className="mb-2 font-semibold text-stone-100">AI as a divergence tool, not the designer</h3>
+              <p className="mb-5 text-sm leading-relaxed text-stone-400">
+                Used AI image generation to rapidly stress-test silhouette readability, emotional clarity, and pose range — not to produce final assets, but to compress divergent exploration. Generated ~60 variations in under an hour to evaluate and discard directions that would have taken days to sketch. The questions driving each batch were specific: does this pose read as focused or strained at small size? Does the eye shape communicate warmth without looking childish? The strongest signals were distilled back into clean, manually refined SVG paths. Every final path was drawn deliberately, not generated.
+              </p>
+              <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/screenshots/flowmate/flomato/flomato.png"
+                  alt="Final Flowmato character"
+                  className="h-48 w-full object-contain p-6"
+                />
+              </div>
+            </div>
+          </FadeUp>
+
+          {/* Step 3 */}
+          <FadeUp className="flex gap-5">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-violet-500/30 bg-violet-500/10 font-mono text-sm font-semibold text-violet-400">
+              3
+            </div>
+            <div className="flex-1">
+              <h3 className="mb-2 font-semibold text-stone-100">Mapping states to the session arc</h3>
+              <p className="mb-5 text-sm leading-relaxed text-stone-400">
+                Each visual state maps to a real moment in a focus session. The design constraint was precise: every change in eyes, posture, color, and animation had to communicate a distinct phase — immediately and without text labels. The visual states mirror the same phases that audio cues demarcate, so both channels reinforce each other.
+              </p>
+
+              {/* Interactive session arc */}
+              <InteractiveSessionArc />
+
+              {/* Interactive character states */}
+              <CharacterStateExplorer />
+
+              {/* State descriptions */}
+              <ul className="mt-5 space-y-1.5 text-sm text-stone-500">
+                {[
+                  { state: "Idle", desc: "❤️ floats upward. Slow breathing pulse. Welcoming, not urgent." },
+                  { state: "Focused", desc: "Pupils enlarge, reflective highlight added. Lightning bolt. No ambient motion — stillness signals intensity." },
+                  { state: "Growing", desc: "Progress ring spins. Star pupils. The work is visibly accumulating." },
+                  { state: "Break", desc: "Cheeks blush. Eyes soften. Earned rest reads as reward, not failure." },
+                  { state: "Celebration", desc: "Arms up. Wide smile. Positive closure matters — the session ended, it didn't just stop." },
+                ].map((item) => (
+                  <li key={item.state} className="flex gap-2">
+                    <span className="shrink-0 text-violet-400/60">—</span>
+                    <span>
+                      <span className="text-stone-300">{item.state}</span>: {item.desc}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </FadeUp>
+        </Section>
+
+        {/* ─── Growth progression ───────────────────────────────── */}
+        <Section className="py-16">
+          <FadeUp className="mx-auto mb-6 max-w-3xl px-6">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-stone-600">
+              Growth System
+            </p>
+            <p className="mt-1 text-sm text-stone-400">
+              Flowmato grows across a session — a visual progress signal for the moments when you do look at the screen. It accumulates in parallel with the audio layer, reinforcing the same arc.
+            </p>
+          </FadeUp>
+          <FadeUp>
+            <GrowthStagesInteractive />
+          </FadeUp>
+
+          {/* Timer video */}
+          <FadeUp className="mx-auto mt-10 max-w-sm px-6">
+            <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-stone-600">
+              Watch it grow
+            </p>
+            <TimerVideo />
           </FadeUp>
         </Section>
 
@@ -302,30 +705,9 @@ export default function FlowMateCaseStudy() {
             ))}
           </div>
 
-          {/* Audio presets */}
+          {/* Interactive audio presets */}
           <FadeUp>
-            <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
-              <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-stone-600">
-                Five audio presets
-              </p>
-              <p className="mb-5 text-sm leading-relaxed text-stone-500">
-                Different tasks call for different audio environments. The preset system lets you tune the density and character of cues without reconfiguring anything manually.
-              </p>
-              <div className="space-y-3">
-                {[
-                  { name: "Full", desc: "All cue types enabled — seconds markers, minute calls, halfway point, countdown. Maximum time awareness." },
-                  { name: "Gentle", desc: "Softer tones, less frequent cues. For work that benefits from ambient awareness without regular interruption." },
-                  { name: "Minimal", desc: "Key announcements only — halfway and final countdown. Quiet but oriented." },
-                  { name: "Silent", desc: "No audio. Visual-only mode for environments where sound isn't possible." },
-                  { name: "Hi-Fi", desc: "Full cues with a richer, more present voice. Designed for focused solo sessions where the voice feels like company." },
-                ].map((preset) => (
-                  <div key={preset.name} className="flex gap-3 text-sm">
-                    <span className="w-16 shrink-0 font-mono text-violet-400">{preset.name}</span>
-                    <span className="leading-relaxed text-stone-500">{preset.desc}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <AudioPresetPicker />
           </FadeUp>
 
           {/* Use contexts */}
@@ -540,168 +922,6 @@ export default function FlowMateCaseStudy() {
           </FadeUp>
         </Section>
 
-        {/* ─── Visual Layer — Flowmato ──────────────────────────── */}
-        <Section className="mx-auto max-w-3xl px-6 py-16">
-          <FadeUp>
-            <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-stone-600">
-              Visual Layer
-            </p>
-            <h2 className="mb-2 text-2xl font-semibold tracking-tight text-stone-100">
-              Flowmato — visual reinforcement
-            </h2>
-            <p className="mb-10 text-sm leading-relaxed text-stone-500">
-              When you are looking at the screen, Flowmato reflects where you are in the session. It is the visual counterpart to the audio system — not the primary mechanism,
-              but a reinforcing layer for the moments when your eyes are on the app. The character and the cues represent the same underlying state through different channels.
-            </p>
-          </FadeUp>
-
-          {/* Step 1 */}
-          <FadeUp className="mb-10 flex gap-5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-violet-500/30 bg-violet-500/10 font-mono text-sm font-semibold text-violet-400">
-              1
-            </div>
-            <div className="flex-1">
-              <h3 className="mb-2 font-semibold text-stone-100">Hand-drawn character exploration</h3>
-              <p className="mb-5 text-sm leading-relaxed text-stone-400">
-                Started with pencil silhouettes to lock in personality before touching code. The tomato shape solved two problems at once: instantly readable as Pomodoro without being literal, and the round form naturally supports expressive facial states. I sketched the tomato character on iPad using Procreate. Built in multiple layers -- initially sketching with pencil tool, then lines, then shades etc.
-              </p>
-              <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/screenshots/flowmate/flomato/handdrawn_flowmato.png"
-                  alt="Hand-drawn Flowmato sketch"
-                  className="h-48 w-full object-contain p-6"
-                />
-              </div>
-            </div>
-          </FadeUp>
-
-          {/* Step 2 */}
-          <FadeUp className="mb-10 flex gap-5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-violet-500/30 bg-violet-500/10 font-mono text-sm font-semibold text-violet-400">
-              2
-            </div>
-            <div className="flex-1">
-              <h3 className="mb-2 font-semibold text-stone-100">AI as a divergence tool, not the designer</h3>
-              <p className="mb-5 text-sm leading-relaxed text-stone-400">
-                Used AI image generation to rapidly stress-test silhouette readability, emotional clarity, and pose range — not to produce final assets, but to compress divergent exploration. Generated ~60 variations in under an hour to evaluate and discard directions that would have taken days to sketch. The questions driving each batch were specific: does this pose read as focused or strained at small size? Does the eye shape communicate warmth without looking childish? The strongest signals were distilled back into clean, manually refined SVG paths. Every final path was drawn deliberately, not generated.
-              </p>
-              <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/screenshots/flowmate/flomato/flomato.png"
-                  alt="Final Flowmato character"
-                  className="h-48 w-full object-contain p-6"
-                />
-              </div>
-            </div>
-          </FadeUp>
-
-          {/* Step 3 */}
-          <FadeUp className="flex gap-5">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-violet-500/30 bg-violet-500/10 font-mono text-sm font-semibold text-violet-400">
-              3
-            </div>
-            <div className="flex-1">
-              <h3 className="mb-2 font-semibold text-stone-100">Mapping states to the session arc</h3>
-              <p className="mb-5 text-sm leading-relaxed text-stone-400">
-                Each visual state maps to a real moment in a focus session. The design constraint was precise: every change in eyes, posture, color, and animation had to communicate a distinct phase — immediately and without text labels. The visual states mirror the same phases that audio cues demarcate, so both channels reinforce each other.
-              </p>
-
-              {/* User journey flow */}
-              <div className="mb-6 overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-4">
-                <p className="mb-3 font-mono text-[10px] uppercase tracking-widest text-stone-600">Session arc</p>
-                <div className="flex items-center gap-0 overflow-x-auto">
-                  {[
-                    { phase: "Pre-session", state: "Idle", note: "Daydreaming" },
-                    { phase: "Session starts", state: "Focused", note: "Locked in" },
-                    { phase: "Progress builds", state: "Growing", note: "Visible momentum" },
-                    { phase: "Break time", state: "Break", note: "Earned rest" },
-                    { phase: "Session done", state: "Celebration", note: "Positive closure" },
-                  ].map((step, i, arr) => (
-                    <div key={step.state} className="flex shrink-0 items-center">
-                      <div className="flex flex-col items-center gap-1 px-3 text-center">
-                        <span className="font-mono text-[9px] uppercase tracking-wider text-stone-600">{step.phase}</span>
-                        <span className="text-xs font-semibold text-violet-400">{step.state}</span>
-                        <span className="text-[10px] text-stone-600">{step.note}</span>
-                      </div>
-                      {i < arr.length - 1 && (
-                        <span className="shrink-0 font-mono text-stone-700">→</span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* 3 illustrated states */}
-              <div className="grid grid-cols-3 gap-3">
-                {CHARACTER_STATES.map((state) => (
-                  <div
-                    key={state.label}
-                    className="overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-center"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={state.src}
-                      alt={`Flowmato ${state.label} state`}
-                      className="mx-auto mb-3 h-20 w-20 object-contain"
-                    />
-                    <p className={`mb-0.5 font-mono text-xs font-semibold uppercase tracking-wider ${state.color}`}>
-                      {state.label}
-                    </p>
-                    <p className="text-[11px] leading-snug text-stone-600">{state.desc}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* State descriptions */}
-              <ul className="mt-5 space-y-1.5 text-sm text-stone-500">
-                {[
-                  { state: "Idle", desc: "❤️ floats upward. Slow breathing pulse. Welcoming, not urgent." },
-                  { state: "Focused", desc: "Pupils enlarge, reflective highlight added. Lightning bolt. No ambient motion — stillness signals intensity." },
-                  { state: "Growing", desc: "Progress ring spins. Star pupils. The work is visibly accumulating." },
-                  { state: "Break", desc: "Cheeks blush. Eyes soften. Earned rest reads as reward, not failure." },
-                  { state: "Celebration", desc: "Arms up. Wide smile. Positive closure matters — the session ended, it didn't just stop." },
-                ].map((item) => (
-                  <li key={item.state} className="flex gap-2">
-                    <span className="shrink-0 text-violet-400/60">—</span>
-                    <span>
-                      <span className="text-stone-300">{item.state}</span>: {item.desc}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </FadeUp>
-        </Section>
-
-        {/* ─── Growth progression ───────────────────────────────── */}
-        <Section className="py-16">
-          <FadeUp className="mx-auto mb-6 max-w-3xl px-6">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-stone-600">
-              Growth System
-            </p>
-            <p className="mt-1 text-sm text-stone-400">
-              Flowmato grows across a session — a visual progress signal for the moments when you do look at the screen. It accumulates in parallel with the audio layer, reinforcing the same arc.
-            </p>
-          </FadeUp>
-          <FadeUp>
-            <div className="flex gap-3 overflow-x-auto px-6 pb-4 sm:justify-center">
-              {GROWTH_STAGES.map((stage, i) => (
-                <div key={stage.label} className="flex shrink-0 flex-col items-center gap-2">
-                  <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={stage.src} alt={stage.label} className="h-14 w-14 object-contain" />
-                  </div>
-                  <span className="font-mono text-[9px] uppercase tracking-wider text-stone-600">
-                    {i + 1}. {stage.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </FadeUp>
-        </Section>
-
         {/* ─── Design Psychology ────────────────────────────────── */}
         <Section className="mx-auto max-w-3xl px-6 py-16">
           <FadeUp className="overflow-hidden rounded-2xl border border-violet-500/15 bg-violet-500/[0.04] p-8">
@@ -741,24 +961,8 @@ export default function FlowMateCaseStudy() {
               Both platforms share the same timer logic, state machine, and audio system via a shared monorepo package.
             </p>
           </FadeUp>
-          <FadeUp>
-            <div className="flex gap-4 overflow-x-auto px-6 pb-4 sm:justify-center">
-              {MOBILE_SCREENSHOTS.map((screen) => (
-                <div key={screen.caption} className="flex shrink-0 flex-col gap-3">
-                  <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={screen.src}
-                      alt={screen.caption}
-                      className="h-[340px] w-[157px] object-cover object-top"
-                    />
-                  </div>
-                  <p className="w-[157px] text-center text-[11px] leading-snug text-stone-600">
-                    {screen.caption}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <FadeUp className="flex justify-center">
+            <MobileCarousel />
           </FadeUp>
         </Section>
 
