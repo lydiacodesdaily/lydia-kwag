@@ -10,13 +10,69 @@ import {
 } from "framer-motion";
 
 const stack = [
-  "React",
-  "React Native",
-  "TypeScript",
-  "Next.js",
-  "OpenAI",
-  "Claude",
-  "Expo",
+  {
+    label: "React",
+    img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+    bg: "bg-[#20232a]",
+    defaultClass: "sm:rotate-6 sm:translate-x-2 sm:group-hover/stack:rotate-0 sm:group-hover/stack:translate-x-0",
+    z: "z-10",
+    group: "group/react",
+    tooltip: "group-hover/react:opacity-100",
+  },
+  {
+    label: "TypeScript",
+    img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+    bg: "",
+    defaultClass: "sm:rotate-6 sm:-translate-x-6 sm:group-hover/stack:rotate-0 sm:group-hover/stack:translate-x-4",
+    z: "z-30",
+    group: "group/ts",
+    tooltip: "group-hover/ts:opacity-100",
+  },
+  {
+    label: "Next.js",
+    img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
+    bg: "",
+    defaultClass: "sm:-rotate-6 sm:-translate-x-10 sm:group-hover/stack:rotate-0 sm:group-hover/stack:translate-x-6",
+    z: "z-40",
+    group: "group/next",
+    tooltip: "group-hover/next:opacity-100",
+  },
+  {
+    label: "OpenAI API",
+    img: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+    bg: "bg-[#10a37f]",
+    defaultClass: "sm:rotate-3 sm:-translate-x-14 sm:group-hover/stack:rotate-0 sm:group-hover/stack:translate-x-8",
+    z: "z-50",
+    group: "group/openai",
+    tooltip: "group-hover/openai:opacity-100",
+  },
+  {
+    label: "Claude API",
+    img: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Claude-ai-icon.png",
+    bg: "bg-[#cc785c]",
+    defaultClass: "sm:-rotate-6 sm:-translate-x-20 sm:group-hover/stack:rotate-0 sm:group-hover/stack:translate-x-10",
+    z: "z-[60]",
+    group: "group/claude",
+    tooltip: "group-hover/claude:opacity-100",
+  },
+  {
+    label: "Tailwind CSS",
+    img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+    bg: "bg-[#0f172a]",
+    defaultClass: "sm:rotate-3 sm:-translate-x-24 sm:group-hover/stack:rotate-0 sm:group-hover/stack:translate-x-12",
+    z: "z-[70]",
+    group: "group/tailwind",
+    tooltip: "group-hover/tailwind:opacity-100",
+  },
+  {
+    label: "Vercel",
+    img: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
+    bg: "bg-white",
+    defaultClass: "sm:-rotate-6 sm:-translate-x-28 sm:group-hover/stack:rotate-0 sm:group-hover/stack:translate-x-14",
+    z: "z-[80]",
+    group: "group/vercel",
+    tooltip: "group-hover/vercel:opacity-100",
+  }
 ];
 
 const container: Variants = {
@@ -91,16 +147,22 @@ export default function Hero() {
               designed to reduce cognitive load.
             </motion.p>
 
-            {/* Stack tags */}
-            <motion.div variants={item} className="flex flex-wrap gap-2">
-              {stack.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-white/[0.06] bg-white/[0.02] px-3 py-1 font-mono text-xs text-stone-500 transition-all duration-300 hover:border-violet-500/30 hover:bg-violet-500/5 hover:text-violet-400"
-                >
-                  {tag}
-                </span>
-              ))}
+            {/* Stack icons */}
+            <motion.div variants={item}>
+              <span className="inline-flex relative group/stack gap-2 sm:gap-0">
+                {stack.map(({ label, img, bg, defaultClass, z, group, tooltip }) => (
+                  <div key={label} className={`relative ${group} sm:transform ${defaultClass} transition-all duration-200 ${z}`}>
+                    <img
+                      src={img}
+                      alt={label}
+                      className={`w-10 h-10 rounded-xl cursor-default p-1 ${bg}`}
+                    />
+                    <span className={`absolute -top-8 left-1/2 -translate-x-1/2 bg-black text-white px-2.5 py-1 rounded-xl bg-opacity-80 text-xs opacity-0 ${tooltip} transition-opacity whitespace-nowrap hidden sm:block`}>
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </span>
             </motion.div>
           </motion.div>
 
