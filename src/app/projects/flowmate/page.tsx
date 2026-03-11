@@ -44,19 +44,19 @@ const MOBILE_SCREENSHOTS = [
 ];
 
 const GROWTH_STAGES = [
-  { src: "/screenshots/flowmate/flomato/progress/1_seedling.png", label: "Seedling" },
-  { src: "/screenshots/flowmate/flomato/progress/2_plant.png", label: "Sprouting" },
-  { src: "/screenshots/flowmate/flomato/progress/3_small.png", label: "Growing" },
-  { src: "/screenshots/flowmate/flomato/progress/4_medium.png", label: "Thriving" },
-  { src: "/screenshots/flowmate/flomato/progress/5_full.png", label: "Blooming" },
-  { src: "/screenshots/flowmate/flomato/progress/6_happy.png", label: "Done!" },
+  { src: "/screenshots/flowmate/flowmato/progress/1_seedling.png", label: "Seedling" },
+  { src: "/screenshots/flowmate/flowmato/progress/2_plant.png", label: "Sprouting" },
+  { src: "/screenshots/flowmate/flowmato/progress/3_small.png", label: "Growing" },
+  { src: "/screenshots/flowmate/flowmato/progress/4_medium.png", label: "Thriving" },
+  { src: "/screenshots/flowmate/flowmato/progress/5_full.png", label: "Blooming" },
+  { src: "/screenshots/flowmate/flowmato/progress/6_happy.png", label: "Done!" },
 ];
 
 const CHARACTER_STATES = [
-  { src: "/screenshots/flowmate/flomato/state/flomato_daydreaming.png", label: "Idle", desc: "Pondering between sessions", color: "text-sky-400", border: "border-sky-500/30", bg: "bg-sky-500/[0.06]" },
-  { src: "/screenshots/flowmate/flomato/state/flomato_focus.png", label: "Focused", desc: "Wired glasses on, locked in on the laptop", color: "text-orange-400", border: "border-orange-500/30", bg: "bg-orange-500/[0.06]" },
-  { src: "/screenshots/flowmate/flomato/state/flomato_relaxing.png", label: "Break", desc: "Sinking into the bean bag with a matcha latte", color: "text-violet-400", border: "border-violet-500/30", bg: "bg-violet-500/[0.06]" },
-  { src: "/screenshots/flowmate/flomato/state/flomato_celebrating.png", label: "Celebrating", desc: "Bouncing with confetti — session complete", color: "text-green-400", border: "border-green-500/30", bg: "bg-green-500/[0.06]" },
+  { src: "/screenshots/flowmate/flowmato/state/flowmato_daydreaming.png", label: "Idle", desc: "Pondering between sessions", color: "text-sky-400", border: "border-sky-500/30", bg: "bg-sky-500/[0.06]" },
+  { src: "/screenshots/flowmate/flowmato/state/flowmato_focus.png", label: "Focused", desc: "Wired glasses on, locked in on the laptop", color: "text-orange-400", border: "border-orange-500/30", bg: "bg-orange-500/[0.06]" },
+  { src: "/screenshots/flowmate/flowmato/state/flowmato_relaxing.png", label: "Break", desc: "Sinking into the bean bag with a matcha latte", color: "text-violet-400", border: "border-violet-500/30", bg: "bg-violet-500/[0.06]" },
+  { src: "/screenshots/flowmate/flowmato/state/flowmato_celebrating.png", label: "Celebrating", desc: "Bouncing with confetti — session complete", color: "text-green-400", border: "border-green-500/30", bg: "bg-green-500/[0.06]" },
 ];
 
 const OUTCOME_CARDS = [
@@ -232,7 +232,7 @@ function CharacterStateExplorer() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={state.src}
-            alt={`Flomato ${state.label}`}
+            alt={`Flowmato ${state.label}`}
             className="h-24 w-24 shrink-0 object-contain"
           />
           <div>
@@ -330,7 +330,7 @@ function TimerVideo() {
     <div className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
       <video
         ref={videoRef}
-        src="/screenshots/flowmate/flomato/progress/flomato_timer.mp4"
+        src="/screenshots/flowmate/flowmato/progress/flowmato_growing.mp4"
         loop
         playsInline
         muted
@@ -464,7 +464,7 @@ export default function FlowMateCaseStudy() {
               <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/screenshots/flowmate/flomato/handdrawn_flowmato.png"
+                  src="/screenshots/flowmate/flowmato/handdrawn_flowmato.png"
                   alt="Hand-drawn Flowmato sketch"
                   className="h-48 w-full object-contain p-6"
                 />
@@ -485,7 +485,7 @@ export default function FlowMateCaseStudy() {
               <div className="overflow-hidden rounded-xl border border-white/[0.06] bg-white/[0.02]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/screenshots/flowmate/flomato/flomato.png"
+                  src="/screenshots/flowmate/flowmato/flowmato.png"
                   alt="Final Flowmato character"
                   className="h-48 w-full object-contain p-6"
                 />
@@ -513,10 +513,10 @@ export default function FlowMateCaseStudy() {
               {/* State descriptions */}
               <ul className="mt-5 space-y-1.5 text-sm text-stone-500">
                 {[
-                  { state: "Idle", desc: "❤️ floats upward. A slow breathing pulse — welcoming, not urgent. Flomato is thinking." },
+                  { state: "Idle", desc: "❤️ floats upward. A slow breathing pulse — welcoming, not urgent. Flowmato is thinking." },
                   { state: "Focused", desc: "Wired glasses on, eyes fixed on the laptop. No ambient motion — stillness signals intensity." },
                   { state: "Break", desc: "Sunk into a bean bag with a matcha latte. Earned rest reads as reward, not obligation." },
-                  { state: "Celebrating", desc: "Bouncing up and down with confetti flying. The session ended — Flomato marks the moment." },
+                  { state: "Celebrating", desc: "Bouncing up and down with confetti flying. The session ended — Flowmato marks the moment." },
                 ].map((item) => (
                   <li key={item.state} className="flex gap-2">
                     <span className="shrink-0 text-violet-400/60">—</span>

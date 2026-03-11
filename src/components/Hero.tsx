@@ -134,23 +134,25 @@ export default function Hero() {
             {/* Headline — dominant focal point */}
             <motion.h1
               variants={item}
-              className="mb-8 text-4xl font-semibold leading-tight tracking-tight text-stone-100 md:text-5xl lg:text-6xl"
+              className="mb-10 text-4xl font-semibold leading-[1.15] tracking-tight text-stone-100 md:text-5xl lg:text-[3.5rem]"
             >
               I build software that works with people.
             </motion.h1>
 
             {/* Byline — name + title, secondary */}
             <motion.div variants={item} className="mb-8">
-              <div className="mb-3 h-px w-10 bg-violet-400/30" />
-              <p className="font-mono text-sm text-stone-500">
-                Lydia Kwag&nbsp;&nbsp;·&nbsp;&nbsp;Senior Product & Front-End Engineer
+              <div className="mb-3 h-px w-10 bg-violet-400/25" />
+              <p className="font-mono text-sm">
+                <span className="text-stone-300">Lydia Kwag</span>
+                <span className="mx-3 text-stone-700">·</span>
+                <span className="text-violet-400/75">Senior Product Engineer</span>
               </p>
             </motion.div>
 
             {/* Supporting copy */}
             <motion.p
               variants={item}
-              className="mb-3 text-base leading-relaxed text-stone-400"
+              className="mb-3 text-base leading-relaxed text-stone-300"
             >
               AI-assisted tools, browser extensions, and calm software systems
               designed to reduce cognitive load.
@@ -159,7 +161,7 @@ export default function Hero() {
             {/* Status line */}
             <motion.p
               variants={item}
-              className="mb-10 text-sm leading-relaxed text-stone-600"
+              className="mb-10 text-sm leading-relaxed text-stone-500"
             >
               After a decade in federal contracting, I left to build at the
               intersection of front-end engineering and AI. Now looking for my
@@ -204,12 +206,12 @@ export default function Hero() {
             <motion.div className="relative" style={{ x: smoothX, y: smoothY }}>
               {/* Outer ambient glow — travels 40% as far (counter-moves) */}
               <motion.div
-                className="absolute inset-0 scale-125 rounded-3xl bg-violet-600/10 blur-[100px]"
+                className="absolute inset-0 scale-[1.3] rounded-3xl bg-violet-600/12 blur-[90px]"
                 style={{ x: outerCounterX, y: outerCounterY }}
               />
               {/* Inner halo — travels 65% as far */}
               <motion.div
-                className="absolute inset-0 scale-105 rounded-2xl bg-violet-500/20 blur-[50px]"
+                className="absolute inset-0 scale-[1.06] rounded-2xl bg-violet-500/15 blur-[40px]"
                 style={{ x: innerCounterX, y: innerCounterY }}
               />
               <Image
@@ -217,7 +219,7 @@ export default function Hero() {
                 alt="Lydia Kwag"
                 width={400}
                 height={400}
-                className="relative w-full max-w-sm rounded-2xl object-cover ring-1 ring-white/[0.08]"
+                className="relative w-full max-w-sm rounded-2xl object-cover ring-1 ring-white/[0.10]"
                 priority
               />
             </motion.div>

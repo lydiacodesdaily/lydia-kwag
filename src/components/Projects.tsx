@@ -30,7 +30,7 @@ const projects: Project[] = [
     stack: ["React Native", "Expo", "OpenAI", "Claude", "React", "Next.js", "TypeScript"],
     link: "/projects/flowmate",
     caseStudyLink: "/projects/flowmate",
-    video: "/screenshots/flowmate/flomato/progress/flomato_timer.mp4",
+    video: "/screenshots/flowmate/flowmato/progress/flowmato_growing.mp4",
     variant: "featured",
   },
   {
