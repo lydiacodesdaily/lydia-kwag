@@ -19,7 +19,7 @@ export default function Contact() {
             <h2 className="mb-4 text-4xl font-semibold tracking-tight text-stone-100 md:text-5xl">
               Let&apos;s talk.
             </h2>
-            <p className="mb-10 text-base leading-relaxed text-stone-500">
+            <p className="mb-10 text-base leading-relaxed text-stone-400">
               Open to product engineering roles at companies building tools that
               matter. Especially interested in teams focused on productivity,
               focus, or human-centered software.
@@ -36,10 +36,14 @@ export default function Contact() {
 
               {/* Email */}
               <div className="relative group/email sm:transform sm:-rotate-6 sm:group-hover/stack:rotate-0 sm:translate-x-2 sm:group-hover/stack:translate-x-0 transition-all duration-200 z-10">
-                <a href="mailto:lydia.kwag.dev@gmail.com">
+                <a
+                  href="mailto:lydia.kwag.dev@gmail.com"
+                  aria-label="Send email to lydia.kwag.dev@gmail.com"
+                  className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/2/24/Gmail_Faenza.svg"
-                    alt="Email"
+                    alt=""
                     className="w-10 h-10 rounded-xl cursor-pointer"
                   />
                 </a>
@@ -50,10 +54,16 @@ export default function Contact() {
 
               {/* LinkedIn */}
               <div className="relative group/linkedin sm:transform sm:rotate-3 sm:group-hover/stack:rotate-0 sm:group-hover/stack:translate-x-2 transition-all duration-200 z-20">
-                <a href="https://linkedin.com/in/lydiakwag" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://linkedin.com/in/lydiakwag"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn profile (opens in new tab)"
+                  className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png"
-                    alt="LinkedIn"
+                    alt=""
                     className="w-10 h-10 rounded-xl cursor-pointer"
                   />
                 </a>
@@ -64,10 +74,16 @@ export default function Contact() {
 
               {/* GitHub */}
               <div className="relative group/github sm:transform sm:-rotate-6 sm:group-hover/stack:rotate-0 sm:-translate-x-4 sm:group-hover/stack:translate-x-4 transition-all duration-200 z-30">
-                <a href="https://github.com/lydiacodesdaily" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://github.com/lydiacodesdaily"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub profile (opens in new tab)"
+                  className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
-                    alt="GitHub"
+                    alt=""
                     className="w-10 h-10 rounded-xl cursor-pointer bg-white p-1"
                   />
                 </a>
@@ -78,10 +94,16 @@ export default function Contact() {
 
               {/* Resume */}
               <div className="relative group/resume sm:transform sm:rotate-6 sm:group-hover/stack:rotate-0 sm:-translate-x-6 sm:group-hover/stack:translate-x-6 transition-all duration-200 z-40">
-                <a href="/LydiaKwag_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="/Lydia_Kwag_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download resume PDF (opens in new tab)"
+                  className="block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0a]"
+                >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/commons/2/23/Deepin_Icon_Theme_%E2%80%93_application-x-yaml_%282%29.svg"
-                    alt="Resume"
+                    alt=""
                     className="w-10 h-10 rounded-xl cursor-pointer"
                   />
                 </a>

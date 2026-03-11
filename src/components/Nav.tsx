@@ -27,7 +27,7 @@ export default function Nav() {
             <a
               key={label}
               href={href}
-              className="rounded text-sm text-stone-500 transition-colors hover:text-violet-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-400/60"
+              className="rounded text-sm text-stone-400 transition-colors hover:text-violet-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-violet-400/60"
             >
               {label}
             </a>

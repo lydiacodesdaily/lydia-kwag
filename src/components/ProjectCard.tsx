@@ -321,7 +321,7 @@ export default function ProjectCard({
               {name}
             </h3>
             <p className="mb-3 text-base text-stone-300">{tagline}</p>
-            <p className="text-sm leading-relaxed text-stone-500">{description}</p>
+            <p className="text-sm leading-relaxed text-stone-400">{description}</p>
           </div>
           <div className="mt-8 space-y-3">
             <div className="flex flex-wrap gap-1.5">
@@ -363,7 +363,7 @@ export default function ProjectCard({
         style={{ perspective: "800px" }}
       >
         {link ? (
-          <motion.a {...linkProps} className={cardClass} style={{ rotateX, rotateY }}>
+          <motion.a {...linkProps} aria-label={`${name} — view project`} className={cardClass} style={{ rotateX, rotateY }}>
             {content}
           </motion.a>
         ) : (
@@ -394,7 +394,7 @@ export default function ProjectCard({
             {name}
           </h3>
           <p className="mb-2 text-sm font-medium text-stone-300">{tagline}</p>
-          <p className="text-sm leading-relaxed text-stone-500">{description}</p>
+          <p className="text-sm leading-relaxed text-stone-400">{description}</p>
         </div>
         <div className="mt-5 space-y-3">
           <div className="flex flex-wrap gap-1.5">
@@ -429,7 +429,7 @@ export default function ProjectCard({
       className="h-full"
     >
       {link ? (
-        <motion.a {...linkProps} className={cardClass} style={{ rotateX, rotateY }}>
+        <motion.a {...linkProps} aria-label={`${name} — view project`} className={cardClass} style={{ rotateX, rotateY }}>
           {content}
         </motion.a>
       ) : (

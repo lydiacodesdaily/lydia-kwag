@@ -39,7 +39,7 @@ export default function Approach() {
           </h2>
         </motion.div>
         <motion.div
-          className="mb-14 max-w-2xl space-y-3 text-base leading-relaxed text-stone-500"
+          className="mb-14 max-w-2xl space-y-3 text-base leading-relaxed text-stone-400"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
@@ -77,7 +77,7 @@ export default function Approach() {
               <h3 className="mb-3 text-base font-medium text-stone-100">
                 {p.title}
               </h3>
-              <p className="text-sm leading-relaxed text-stone-500">{p.body}</p>
+              <p className="text-sm leading-relaxed text-stone-400">{p.body}</p>
             </motion.div>
           ))}
         </div>

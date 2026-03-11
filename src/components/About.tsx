@@ -31,17 +31,17 @@ export default function About() {
               I design software systems around real human behavior — not
               idealized workflows.
             </p>
-            <p className="text-base leading-relaxed text-stone-500">
+            <p className="text-base leading-relaxed text-stone-400">
               My work focuses on tools for focus, learning, and deeper
               productivity — software that earns attention rather than demands
               it.
             </p>
-            <p className="text-base leading-relaxed text-stone-500">
+            <p className="text-base leading-relaxed text-stone-400">
               I care about the full product experience: system behavior,
               interface design, interaction details, and the clarity of
               language.
             </p>
-            <p className="text-base leading-relaxed text-stone-500">
+            <p className="text-base leading-relaxed text-stone-400">
               Outside of software, I&rsquo;m drawn to quiet routines — slow
               runs with audiobooks, tea rituals, a bit of piano. I also organize
               Drawing Northern Virginia, a local meetup where artists sketch
@@ -49,14 +49,14 @@ export default function About() {
               interfaces, time awareness, reduced cognitive load — come from
               these everyday rhythms.
             </p>
-            <p className="text-base leading-relaxed text-stone-500">
+            <p className="text-base leading-relaxed text-stone-400">
               Before Lydia Studio, I spent a decade doing serious front-end work
               across federal health, defense, and intelligence platforms at SAIC
               and Novetta. That work taught me how much architecture and reusable
               component systems matter when products need to scale across teams
               and long lifecycles.
             </p>
-            <p className="text-base leading-relaxed text-stone-500">
+            <p className="text-base leading-relaxed text-stone-400">
               As AI began reshaping the industry, I made a deliberate choice to
               be part of building it rather than watching from the sidelines. I
               left federal contracting, enrolled in Penn&rsquo;s CS graduate

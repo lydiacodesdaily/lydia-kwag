@@ -161,11 +161,10 @@ export default function Hero() {
             {/* Status line */}
             <motion.p
               variants={item}
-              className="mb-10 text-sm leading-relaxed text-stone-500"
+              className="mb-10 text-sm leading-relaxed text-stone-400"
             >
-              After a decade in federal contracting, I left to build at the
-              intersection of front-end engineering and AI. Now looking for my
-              next team.
+              I spent a decade in federal engineering, then left to prove I could build products people actually want.
+              That worked. Now I'm ready to bring that to a team.
             </motion.p>
 
             {/* Stack icons */}

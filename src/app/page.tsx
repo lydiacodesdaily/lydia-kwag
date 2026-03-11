@@ -17,6 +17,12 @@ export default function Home() {
         {/* Secondary bottom-right indigo accent — adds depth for lower sections */}
         <div className="absolute bottom-0 right-0 h-[500px] w-[700px] translate-x-1/3 translate-y-1/3 rounded-full bg-indigo-700/[0.05] blur-[120px]" />
       </div>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-violet-600 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-white focus:outline-none"
+      >
+        Skip to main content
+      </a>
       <Nav />
       <main id="main-content">
         <Hero />
