@@ -20,9 +20,7 @@ export default function Contact() {
               Let&apos;s talk.
             </h2>
             <p className="mb-10 text-base leading-relaxed text-stone-400">
-              Open to product engineering roles at companies building tools that
-              matter. Especially interested in teams focused on productivity,
-              focus, or human-centered software.
+              Open to senior front-end engineering roles where craft, performance, and user experience are taken seriously — from productivity tools to enterprise platforms where interface quality drives real outcomes.
             </p>
           </motion.div>
 

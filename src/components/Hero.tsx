@@ -145,7 +145,7 @@ export default function Hero() {
               <p className="font-mono text-sm">
                 <span className="text-stone-300">Lydia Kwag</span>
                 <span className="mx-3 text-stone-700">·</span>
-                <span className="text-violet-400/75">Senior Product Engineer</span>
+                <span className="text-violet-400/75">Senior Front-End & Product Engineer</span>
               </p>
             </motion.div>
 
