@@ -40,7 +40,7 @@ export default function Nav() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#0a0a0a]/80 backdrop-blur-md">
-<nav aria-label="Main" className="mx-auto flex max-w-5xl items-center justify-between py-4">
+<nav aria-label="Main" className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
         <span className="flex items-baseline font-mono text-base font-medium tracking-tight text-stone-100">
           <span>L</span>
           {YDIA.map(([char, w], i) => (
@@ -58,7 +58,7 @@ export default function Nav() {
             </motion.span>
           ))}
         </span>
-        <div className="flex items-center gap-6">
+        <div className="hidden sm:flex items-center gap-6">
           {[
             { label: "Projects", href: "#projects" },
             { label: "Approach", href: "#approach" },
