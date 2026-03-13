@@ -409,7 +409,7 @@ export default function ProjectCard({
           </div>
           {link && (
             <p aria-hidden="true" className="font-mono text-xs text-violet-400 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              View →
+              {caseStudyLink ? "Read case study →" : "View →"}
             </p>
           )}
         </div>
