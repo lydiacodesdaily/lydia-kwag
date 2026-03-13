@@ -2,6 +2,7 @@
 
 import { motion, type Variants, AnimatePresence } from "framer-motion";
 import { useState, useRef } from "react";
+import Image from "next/image";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
@@ -102,61 +103,42 @@ const SESSION_ARC = [
   { phase: "Session done", state: "Celebrating", note: "Confetti!", stateIdx: 3 },
 ];
 
-function MobileCarousel() {
-  const [active, setActive] = useState(0);
+function MobileMarquee() {
+  const doubled = [...MOBILE_SCREENSHOTS, ...MOBILE_SCREENSHOTS];
+  const [paused, setPaused] = useState(false);
+
   return (
-    <div className="flex flex-col items-center gap-6">
-      <div className="relative flex items-center justify-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="flex flex-col items-center gap-3"
-          >
-            <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={MOBILE_SCREENSHOTS[active].src}
-                alt={MOBILE_SCREENSHOTS[active].caption}
-                className="h-[380px] w-[175px] object-cover object-top"
+    <div className="mx-auto max-w-3xl px-6">
+      <div
+        className="overflow-hidden"
+        style={{
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+          maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+        }}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div
+          className="animate-marquee flex gap-4"
+          style={{ width: "max-content", animationPlayState: paused ? "paused" : "running" }}
+        >
+          {doubled.map((img, i) => (
+            <div
+              key={i}
+              className="relative shrink-0 overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]"
+              style={{ width: 240, height: 520 }}
+            >
+              <Image
+                src={img.src}
+                alt={img.caption}
+                fill
+                className="object-cover object-top"
+                sizes="240px"
+                quality={90}
               />
             </div>
-            <p className="max-w-[260px] text-center text-[11px] leading-snug text-stone-500">
-              {MOBILE_SCREENSHOTS[active].caption}
-            </p>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Dots + arrows */}
-      <div className="flex items-center gap-4">
-        <button
-          onClick={() => setActive((p) => (p - 1 + MOBILE_SCREENSHOTS.length) % MOBILE_SCREENSHOTS.length)}
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-stone-500 transition hover:border-violet-500/30 hover:text-violet-400"
-          aria-label="Previous"
-        >
-          ←
-        </button>
-        <div className="flex gap-1.5">
-          {MOBILE_SCREENSHOTS.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              className={`h-1.5 rounded-full transition-all duration-300 ${i === active ? "w-6 bg-violet-400" : "w-1.5 bg-stone-700 hover:bg-stone-500"}`}
-              aria-label={`Screenshot ${i + 1}`}
-            />
           ))}
         </div>
-        <button
-          onClick={() => setActive((p) => (p + 1) % MOBILE_SCREENSHOTS.length)}
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] text-stone-500 transition hover:border-violet-500/30 hover:text-violet-400"
-          aria-label="Next"
-        >
-          →
-        </button>
       </div>
     </div>
   );
@@ -961,8 +943,8 @@ export default function FlowMateCaseStudy() {
               All platforms share the same timer logic, state machine, and audio system via a shared monorepo package.
             </p>
           </FadeUp>
-          <FadeUp className="flex justify-center">
-            <MobileCarousel />
+          <FadeUp>
+            <MobileMarquee />
           </FadeUp>
         </Section>
 
