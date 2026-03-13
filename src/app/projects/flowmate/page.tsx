@@ -416,6 +416,40 @@ export default function FlowMateCaseStudy() {
               </div>
             ))}
           </FadeUp>
+
+          {/* Links */}
+          <FadeUp className="mt-6 flex flex-wrap gap-3">
+            <a
+              href="https://flowmate.club"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl bg-violet-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-violet-400"
+            >
+              View live site →
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=club.flowmate.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl border border-violet-500/25 bg-violet-500/[0.04] px-5 py-2.5 text-sm font-semibold text-stone-300 transition-colors duration-200 hover:border-violet-500/40 hover:text-stone-100"
+            >
+              Android app →
+            </a>
+            <a
+              href="https://github.com/lydiacodesdaily/flowmate"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl border border-white/[0.08] bg-white/[0.02] px-5 py-2.5 text-sm font-semibold text-stone-500 transition-colors duration-200 hover:border-white/[0.12] hover:text-stone-400"
+            >
+              GitHub
+            </a>
+            <div className="flex items-center gap-2 rounded-xl border border-orange-500/20 bg-orange-500/[0.04] px-5 py-2.5">
+              <span className="text-sm font-semibold text-stone-500">iOS</span>
+              <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-orange-400">
+                In Review
+              </span>
+            </div>
+          </FadeUp>
         </Section>
 
         {/* ─── Visual Layer — Flowmato ──────────────────────────── */}
@@ -1038,41 +1072,6 @@ export default function FlowMateCaseStudy() {
           </FadeUp>
         </Section>
 
-        {/* ─── CTA ──────────────────────────────────────────────── */}
-        <Section className="mx-auto max-w-3xl border-t border-white/[0.05] px-6 py-16">
-          <FadeUp className="flex flex-wrap gap-3">
-            <a
-              href="https://flowmate.club"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-xl bg-violet-500 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-violet-400"
-            >
-              View live site →
-            </a>
-            <a
-              href="https://github.com/lydiacodesdaily/flowmate"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-xl border border-white/[0.08] bg-white/[0.02] px-6 py-3 text-sm font-semibold text-stone-300 transition-colors duration-200 hover:border-violet-500/30 hover:text-stone-100"
-            >
-              View on GitHub
-            </a>
-            <a
-              href="https://play.google.com/store/apps/details?id=club.flowmate.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-xl border border-white/[0.08] bg-white/[0.02] px-6 py-3 text-sm font-semibold text-stone-300 transition-colors duration-200 hover:border-violet-500/30 hover:text-stone-100"
-            >
-              Android app →
-            </a>
-            <div className="flex items-center gap-2 rounded-xl border border-orange-500/20 bg-orange-500/[0.04] px-6 py-3">
-              <span className="text-sm font-semibold text-stone-500">iOS app</span>
-              <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-orange-400">
-                In Review
-              </span>
-            </div>
-          </FadeUp>
-        </Section>
       </main>
     </div>
   );

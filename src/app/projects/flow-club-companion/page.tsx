@@ -168,6 +168,26 @@ export default function FlowClubCompanionCaseStudy() {
               </div>
             ))}
           </FadeUp>
+
+          {/* Links */}
+          <FadeUp className="mt-6 flex flex-wrap gap-3">
+            <a
+              href="https://chromewebstore.google.com/detail/flow-club-companion/onkipfjaffclamfkknfbippcjpnfbabf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl bg-violet-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-violet-400"
+            >
+              Chrome Web Store →
+            </a>
+            <a
+              href="https://addons.mozilla.org/en-US/firefox/addon/flow-club-companion/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl border border-violet-500/25 bg-violet-500/[0.04] px-5 py-2.5 text-sm font-semibold text-stone-300 transition-colors duration-200 hover:border-violet-500/40 hover:text-stone-100"
+            >
+              Firefox Add-ons →
+            </a>
+          </FadeUp>
         </Section>
 
         {/* ─── Problem ──────────────────────────────────────────── */}
@@ -412,34 +432,6 @@ export default function FlowClubCompanionCaseStudy() {
           </FadeUp>
         </Section>
 
-        {/* ─── Links ────────────────────────────────────────────── */}
-        <Section className="mx-auto max-w-3xl px-6 pb-32 pt-8">
-          <FadeUp>
-            <p className="mb-5 font-mono text-[10px] uppercase tracking-widest text-stone-600">
-              Links
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="https://chromewebstore.google.com/detail/flow-club-companion/onkipfjaffclamfkknfbippcjpnfbabf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.03] px-5 py-3 font-mono text-xs text-stone-300 transition-colors duration-200 hover:border-violet-500/30 hover:text-violet-400"
-              >
-                Chrome Web Store
-                <span aria-hidden="true" className="text-stone-600">→</span>
-              </a>
-              <a
-                href="https://addons.mozilla.org/en-US/firefox/addon/flow-club-companion/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.03] px-5 py-3 font-mono text-xs text-stone-300 transition-colors duration-200 hover:border-violet-500/30 hover:text-violet-400"
-              >
-                Firefox Add-ons
-                <span aria-hidden="true" className="text-stone-600">→</span>
-              </a>
-            </div>
-          </FadeUp>
-        </Section>
       </main>
     </div>
   );
