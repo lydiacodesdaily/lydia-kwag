@@ -14,22 +14,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lydia Kwag — Product Engineer",
+  title: "Lydia Kwag — Senior Front-End Engineer",
   description:
-    "Product engineer building human-centered productivity tools. React Native, TypeScript, Next.js, AI APIs.",
+    "Senior front-end engineer building human-centered productivity tools. React Native, TypeScript, Next.js, AI APIs.",
   openGraph: {
-    title: "Lydia Kwag — Product Engineer",
+    title: "Lydia Kwag — Senior Front-End Engineer",
     description:
-      "Product engineer building human-centered productivity tools.",
+      "Senior front-end engineer building human-centered productivity tools.",
     url: "https://lydiakwag.com",
     siteName: "Lydia Kwag",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Lydia Kwag — Product Engineer",
+    title: "Lydia Kwag — Senior Front-End Engineer",
     description:
-      "Product engineer building human-centered productivity tools.",
+      "Senior front-end engineer building human-centered productivity tools.",
   },
 };
 
