@@ -63,8 +63,8 @@ const CHARACTER_STATES = [
 const OUTCOME_CARDS = [
   {
     icon: "◌",
-    title: "1,000+ active users",
-    body: "Reached 1,000+ active users across web and Android. Early testers cited spoken cues as the primary behavior change — they stopped checking the clock.",
+    title: "Audio cues drive behavior change",
+    body: "Early testers cited spoken cues as the primary behavior change — they stopped checking the clock. Designed so the timer is fully usable without looking at the screen.",
   },
   {
     icon: "◉",
@@ -73,8 +73,8 @@ const OUTCOME_CARDS = [
   },
   {
     icon: "◈",
-    title: "Shipped cross-platform",
-    body: "Web and Android live simultaneously, sharing business logic via @flowmate/shared. One codebase decision that avoided duplicating every timer, state, and audio rule across two platforms.",
+    title: "Shipped cross-platform — Android unpromoted by design",
+    body: "Web and Android are live, sharing business logic via @flowmate/shared. Android is intentionally unpromoted — holding for iOS launch so both platforms ship together with feature parity. iOS is currently in App Store review.",
   },
   {
     icon: "◎",
@@ -974,7 +974,7 @@ export default function FlowMateCaseStudy() {
               </span>
             </div>
             <p className="mt-2 text-sm text-stone-500">
-              All platforms share the same timer logic, state machine, and audio system via a shared monorepo package.
+              All platforms share the same timer logic, state machine, and audio system via a shared monorepo package. Android is live but unpromoted — holding until iOS ships so both platforms launch together.
             </p>
           </FadeUp>
           <FadeUp>
