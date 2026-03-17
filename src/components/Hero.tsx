@@ -145,7 +145,7 @@ export default function Hero() {
               <p className="font-mono text-sm">
                 <span className="text-stone-300">Lydia Kwag</span>
                 <span className="mx-3 text-stone-700">·</span>
-                <span className="text-violet-400/75">Senior Front-End & Product Engineer</span>
+                <span className="text-violet-400/75">Senior Front-End</span>
               </p>
             </motion.div>
 
@@ -154,8 +154,7 @@ export default function Hero() {
               variants={item}
               className="mb-3 text-base leading-relaxed text-stone-300"
             >
-              AI-assisted tools, browser extensions, and calm software systems
-              designed to reduce cognitive load.
+              AI-assisted tools, browser extensions, and calm software systems designed to reduce cognitive load.
             </motion.p>
 
             {/* Status line */}
@@ -163,8 +162,7 @@ export default function Hero() {
               variants={item}
               className="mb-10 text-sm leading-relaxed text-stone-400"
             >
-              I spent a decade in federal engineering, then left to prove I could build products people actually want.
-              That worked. Now I'm ready to bring that to a team.
+              I spent a decade building large-scale federal platforms, then founded Lydia Studio to ship products directly to users. Now I'm looking to bring both to a team.
             </motion.p>
 
             {/* Stack icons */}
