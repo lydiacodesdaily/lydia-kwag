@@ -73,8 +73,8 @@ const OUTCOME_CARDS = [
   },
   {
     icon: "◈",
-    title: "Shipped cross-platform — Android unpromoted by design",
-    body: "Web and Android are live, sharing business logic via @flowmate/shared. Android is intentionally unpromoted — holding for iOS launch so both platforms ship together with feature parity. iOS is currently in App Store review.",
+    title: "Shipped cross-platform",
+    body: "Web, iOS, and Android are all live, sharing business logic via @flowmate/shared. Available on the App Store and Google Play.",
   },
   {
     icon: "◎",
@@ -436,6 +436,14 @@ export default function FlowMateCaseStudy() {
               Android app →
             </a>
             <a
+              href="https://apps.apple.com/us/app/flowmate-focus-timer/id6758559973"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl border border-violet-500/25 bg-violet-500/[0.04] px-5 py-2.5 text-sm font-semibold text-stone-300 transition-colors duration-200 hover:border-violet-500/40 hover:text-stone-100"
+            >
+              iOS app →
+            </a>
+                        <a
               href="https://github.com/lydiacodesdaily/flowmate"
               target="_blank"
               rel="noopener noreferrer"
@@ -443,12 +451,6 @@ export default function FlowMateCaseStudy() {
             >
               GitHub
             </a>
-            <div className="flex items-center gap-2 rounded-xl border border-orange-500/20 bg-orange-500/[0.04] px-5 py-2.5">
-              <span className="text-sm font-semibold text-stone-500">iOS</span>
-              <span className="rounded-full border border-orange-500/30 bg-orange-500/10 px-2 py-0.5 font-mono text-[9px] uppercase tracking-wider text-orange-400">
-                In Review
-              </span>
-            </div>
           </FadeUp>
         </Section>
 
