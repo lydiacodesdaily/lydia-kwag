@@ -433,7 +433,7 @@ export default function FlowMateCaseStudy() {
               rel="noopener noreferrer"
               className="rounded-xl border border-violet-500/25 bg-violet-500/[0.04] px-5 py-2.5 text-sm font-semibold text-stone-300 transition-colors duration-200 hover:border-violet-500/40 hover:text-stone-100"
             >
-              Android app →
+              Android app
             </a>
             <a
               href="https://apps.apple.com/us/app/flowmate-focus-timer/id6758559973"
